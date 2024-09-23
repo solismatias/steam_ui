@@ -65,6 +65,56 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
   }
 }
 
+class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
+  /// {@macro steam_container_theme}
+  const SteamContainerTheme({
+    required this.backgroundColor,
+    required this.borderColor,
+    this.labelTextStyle,
+    this.padding = const EdgeInsets.all(10),
+  });
+
+  /// The background color of the container.
+  final Color backgroundColor;
+
+  /// The border color of the container.
+  final Color borderColor;
+
+  /// The text style of the label, optional.
+  final TextStyle? labelTextStyle;
+
+  /// The padding inside the container, defaults to 10.
+  final EdgeInsets padding;
+
+  @override
+  SteamContainerTheme copyWith({
+    Color? backgroundColor,
+    Color? borderColor,
+    TextStyle? labelTextStyle,
+    EdgeInsets? padding,
+  }) {
+    return SteamContainerTheme(
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      borderColor: borderColor ?? this.borderColor,
+      labelTextStyle: labelTextStyle ?? this.labelTextStyle,
+      padding: padding ?? this.padding,
+    );
+  }
+
+  @override
+  SteamContainerTheme lerp(ThemeExtension<SteamContainerTheme>? other, double t) {
+    if (other is! SteamContainerTheme) {
+      return this;
+    }
+    return SteamContainerTheme(
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
+      borderColor: Color.lerp(borderColor, other.borderColor, t)!,
+      labelTextStyle: TextStyle.lerp(labelTextStyle, other.labelTextStyle, t),
+      padding: EdgeInsets.lerp(padding, other.padding, t) ?? padding,
+    );
+  }
+}
+
 /// Helper methods on [BuildContext] for the Flutter Steam.
 extension SteamBuildContext on BuildContext {
   /// Returns the extension of type [T] from the context.
@@ -100,12 +150,18 @@ ThemeData flutterSteamTheme({
     shade: Color(0xFFA3AF9B), // Grey (shade, border or secondary elements)
   ),
 }) {
+  final containerTheme = SteamContainerTheme(
+    backgroundColor: steamTheme.primary,
+    borderColor: steamTheme.shade,
+  );
+
   return ThemeData(
     brightness: brightness,
     primaryColor: steamTheme.primary,
     highlightColor: steamTheme.highlight,
     extensions: [
       steamTheme,
+      containerTheme,
     ],
   );
 }
