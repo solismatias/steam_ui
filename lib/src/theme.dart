@@ -69,7 +69,8 @@ class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
   /// {@macro steam_container_theme}
   const SteamContainerTheme({
     required this.backgroundColor,
-    required this.borderColor,
+    required this.primaryBorderColor,
+    required this.secondaryBorderColor,
     this.labelTextStyle,
     this.padding = const EdgeInsets.all(10),
   });
@@ -77,8 +78,11 @@ class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
   /// The background color of the container.
   final Color backgroundColor;
 
-  /// The border color of the container.
-  final Color borderColor;
+  /// The primary border color of the container.
+  final Color primaryBorderColor;
+
+  /// The secondary border color of the container.
+  final Color secondaryBorderColor;
 
   /// The text style of the label, optional.
   final TextStyle? labelTextStyle;
@@ -89,13 +93,15 @@ class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
   @override
   SteamContainerTheme copyWith({
     Color? backgroundColor,
-    Color? borderColor,
+    Color? primaryBorderColor,
+    Color? secondaryBorderColor,
     TextStyle? labelTextStyle,
     EdgeInsets? padding,
   }) {
     return SteamContainerTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
-      borderColor: borderColor ?? this.borderColor,
+      primaryBorderColor: primaryBorderColor ?? this.primaryBorderColor,
+      secondaryBorderColor: secondaryBorderColor ?? this.secondaryBorderColor,
       labelTextStyle: labelTextStyle ?? this.labelTextStyle,
       padding: padding ?? this.padding,
     );
@@ -108,7 +114,8 @@ class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
     }
     return SteamContainerTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      borderColor: Color.lerp(borderColor, other.borderColor, t)!,
+      primaryBorderColor: Color.lerp(primaryBorderColor, other.primaryBorderColor, t)!,
+      secondaryBorderColor: Color.lerp(secondaryBorderColor, other.secondaryBorderColor, t)!,
       labelTextStyle: TextStyle.lerp(labelTextStyle, other.labelTextStyle, t),
       padding: EdgeInsets.lerp(padding, other.padding, t) ?? padding,
     );
@@ -152,7 +159,8 @@ ThemeData flutterSteamTheme({
 }) {
   final containerTheme = SteamContainerTheme(
     backgroundColor: steamTheme.primary,
-    borderColor: steamTheme.shade,
+    primaryBorderColor: steamTheme.shade,
+    secondaryBorderColor: steamTheme.tertiary,
   );
 
   return ThemeData(

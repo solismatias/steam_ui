@@ -14,7 +14,8 @@ class SteamContainer extends StatelessWidget {
     this.width,
     this.height,
     this.backgroundColor,
-    this.borderColor,
+    this.primaryBorderColor,
+    this.secondaryBorderColor,
     this.padding,
   });
 
@@ -34,9 +35,13 @@ class SteamContainer extends StatelessWidget {
   /// in `SteamContainerTheme`.
   final Color? backgroundColor;
 
-  /// Border color of this container, when null, defaults to the color
+  /// Primary border color of this container, when null, defaults to the color
   /// in `SteamContainerTheme`.
-  final Color? borderColor;
+  final Color? primaryBorderColor;
+
+  /// Secondary border color of this container, when null, defaults to the color
+  /// in `SteamContainerTheme`.
+  final Color? secondaryBorderColor;
 
   /// An optional padding to apply to the container, when null,
   /// defaults to the padding in `SteamContainerTheme`.
@@ -51,7 +56,10 @@ class SteamContainer extends StatelessWidget {
     final containerBackgroundColor = backgroundColor ?? steamContainerTheme!.backgroundColor;
 
     // Use provided border color, or fall back to the theme's border color.
-    final containerBorderColor = borderColor ?? steamContainerTheme!.borderColor;
+    final containerPrimaryBorderColor = primaryBorderColor ?? steamContainerTheme!.primaryBorderColor;
+
+    // Use provided border color, or fall back to the theme's border color.
+    final containerSecondaryBorderColor = secondaryBorderColor ?? steamContainerTheme!.secondaryBorderColor;
 
     // Use provided padding, or fall back to the theme's padding.
     final containerPadding = padding ?? steamContainerTheme!.padding;
@@ -62,10 +70,10 @@ class SteamContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: containerBackgroundColor,
         border: Border(
-          top: BorderSide(color: containerBorderColor, width: 1),
-          left: BorderSide(color: containerBorderColor, width: 1),
-          right: BorderSide(color: containerBorderColor, width: 1),
-          bottom: BorderSide(color: containerBorderColor, width: 1),
+          top: BorderSide(color: containerPrimaryBorderColor, width: 1),
+          left: BorderSide(color: containerPrimaryBorderColor, width: 1),
+          right: BorderSide(color: containerSecondaryBorderColor, width: 1),
+          bottom: BorderSide(color: containerSecondaryBorderColor, width: 1),
         ),
       ),
       child: Padding(
