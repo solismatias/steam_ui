@@ -1,3 +1,5 @@
+import 'package:example/src/theme.dart';
+import 'package:example/src/widgets/steam_container.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,26 +14,32 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      theme: flutterSteamTheme(),
+      home: const _NewExample(),
+    );
+  }
+}
+
+class _NewExample extends StatelessWidget {
+  const _NewExample();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Container(),
+          const Text('0'),
+          const SteamContainer(
+            width: 100,
+            height: 100,
+          ),
+          const SteamContainer(
+            width: 200,
+            height: 200,
+          ),
+        ],
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -45,19 +53,19 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var border = const Border(
       top: BorderSide(
-        color: CustomColors.onPrimary3,
+        color: CustomColors.onPrimaryMuted,
         width: 1,
       ),
       left: BorderSide(
-        color: CustomColors.onPrimary3,
+        color: CustomColors.onPrimaryMuted,
         width: 1,
       ),
       right: BorderSide(
-        color: CustomColors.highlightSecondary,
+        color: CustomColors.accent,
         width: 1,
       ),
       bottom: BorderSide(
-        color: CustomColors.highlightSecondary,
+        color: CustomColors.accent,
         width: 1,
       ),
     );
@@ -136,7 +144,7 @@ class _RowValue extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.end,
             '$label:',
-            style: const TextStyle(color: CustomColors.onPrimary3),
+            style: const TextStyle(color: CustomColors.onPrimaryMuted),
           ),
         ),
         const SizedBox(width: 10),
@@ -144,7 +152,7 @@ class _RowValue extends StatelessWidget {
           flex: 7,
           child: Text(
             value,
-            style: const TextStyle(color: CustomColors.onPrimary2),
+            style: const TextStyle(color: CustomColors.onPrimaryVariant),
           ),
         ),
       ],
@@ -179,11 +187,48 @@ class _Header extends StatelessWidget {
 }
 
 class CustomColors {
-  static const Color primary = Color(0xFF4C5844);
-  static const Color highlight = Color(0xFF968830);
-  static const Color highlightSecondary = Color(0xFF282E22);
-  static const Color primaryContainer = Color(0xFF3E4637);
-  static const Color onPrimary = Color(0xFFFFFFFF);
-  static const Color onPrimary2 = Color(0xFFD2DDCC);
-  static const Color onPrimary3 = Color(0xFFA3AF9B);
+  static const Color primary = Color(0xFF4C5844); // Dark green (background)
+  static const Color secondary = Color(0xFF5A6A50); // Lighter green (tabs and highlights)
+  static const Color tertiary = Color(0xFF3E4637); // Lighter green (tabs and highlights)
+  static const Color accent = Color(0xFF968830); // Yellow/gold (accent/highlight)
+  static const Color onPrimary = Color(0xFFFFFFFF); // High emphasis (titles, most important text)
+  static const Color onPrimaryVariant = Color(0xFFD2DDCC); // Medium emphasis (normal text)
+  static const Color onPrimaryMuted = Color(0xFFA3AF9B); // Low emphasis (labels, less important values)
+  static const Color shade = Color(0xFFA3AF9B); // Grey (shade, border or secondary elements)
+}
+
+// ignore: unused_element
+class _Container extends StatelessWidget {
+  const _Container();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: CustomColors.primary,
+        border: Border(
+          top: BorderSide(
+            color: CustomColors.onPrimaryMuted,
+            width: 1,
+          ),
+          left: BorderSide(
+            color: CustomColors.onPrimaryMuted,
+            width: 1,
+          ),
+          right: BorderSide(
+            color: CustomColors.accent,
+            width: 1,
+          ),
+          bottom: BorderSide(
+            color: CustomColors.accent,
+            width: 1,
+          ),
+        ),
+      ),
+      child: const Padding(
+        padding: EdgeInsets.all(10),
+        child: SizedBox(),
+      ),
+    );
+  }
 }
