@@ -30,13 +30,20 @@ class _NewExample extends StatelessWidget {
         children: [
           Container(),
           const Text('0'),
+          // const SteamContainer(
+          //   width: 300,
+          //   height: 300,
+          // ),
           const SteamContainer(
-            width: 100,
-            height: 100,
-          ),
-          const SteamContainer(
-            width: 200,
-            height: 200,
+            width: 300,
+            height: 300,
+            child: Center(
+              child: SteamContainer(
+                width: 150,
+                height: 150,
+                child: Center(child: SteamContainer()),
+              ),
+            ),
           ),
         ],
       ),
