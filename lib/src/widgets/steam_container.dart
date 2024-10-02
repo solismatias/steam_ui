@@ -53,23 +53,25 @@ class SteamContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final steamContainerTheme = Theme.of(context).extension<SteamContainerTheme>();
+    final cTheme = Theme.of(context).extension<SteamContainerTheme>();
 
-    // Use provided background color, or fall back to the theme's background color.
-    final containerBackgroundColor = backgroundColor ?? steamContainerTheme!.backgroundColor;
+    // Use provided background color,
+    // or fall back to the theme's background color.
+    final containerBackgroundColor = backgroundColor ?? cTheme!.backgroundColor;
 
-    // Use provided primary and secondary border colors, or fall back to the theme's values.
-    final containerPrimaryBorderColor = primaryBorderColor ?? steamContainerTheme!.primaryBorderColor;
-    final containerSecondaryBorderColor = secondaryBorderColor ?? steamContainerTheme!.secondaryBorderColor;
+    // Use provided primary and secondary border colors,
+    // or fall back to the theme's values.
+    final primary = primaryBorderColor ?? cTheme!.primaryBorderColor;
+    final secondary = secondaryBorderColor ?? cTheme!.secondaryBorderColor;
 
     // Use provided padding, or fall back to the theme's padding.
-    final containerPadding = padding ?? steamContainerTheme!.padding;
+    final containerPadding = padding ?? cTheme!.padding;
 
     // Determine border colors based on alternateBorderColor flag.
-    final topBorderColor = alternateBorderColor ? containerSecondaryBorderColor : containerPrimaryBorderColor;
-    final leftBorderColor = alternateBorderColor ? containerSecondaryBorderColor : containerPrimaryBorderColor;
-    final rightBorderColor = alternateBorderColor ? containerPrimaryBorderColor : containerSecondaryBorderColor;
-    final bottomBorderColor = alternateBorderColor ? containerPrimaryBorderColor : containerSecondaryBorderColor;
+    final top = alternateBorderColor ? secondary : primary;
+    final left = alternateBorderColor ? secondary : primary;
+    final right = alternateBorderColor ? primary : secondary;
+    final bottom = alternateBorderColor ? primary : secondary;
 
     return Container(
       width: width,
@@ -77,10 +79,10 @@ class SteamContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: containerBackgroundColor,
         border: Border(
-          top: BorderSide(color: topBorderColor, width: 1),
-          left: BorderSide(color: leftBorderColor, width: 1),
-          right: BorderSide(color: rightBorderColor, width: 1),
-          bottom: BorderSide(color: bottomBorderColor, width: 1),
+          top: BorderSide(color: top),
+          left: BorderSide(color: left),
+          right: BorderSide(color: right),
+          bottom: BorderSide(color: bottom),
         ),
       ),
       child: Padding(

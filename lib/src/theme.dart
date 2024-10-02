@@ -18,28 +18,34 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
     required this.shade,
   });
 
-  /// The primary color of the theme, used for the most prominent elements.
+  /// The primary color of the theme,
+  /// used for the most prominent elements.
   final Color primary;
 
-  /// The secondary color of the theme, used for accents and less prominent elements.
+  /// The secondary color of the theme,
+  /// used for accents and less prominent elements.
   final Color secondary;
 
-  /// The tertiary color of the theme, used for additional accents and less prominent elements.
+  /// The tertiary color of the theme,
+  /// used for additional accents and less prominent elements.
   final Color tertiary;
 
   /// The highlight color, used to draw attention to important elements.
   final Color highlight;
 
-  /// The color applied on top of the primary color, typically for text or icons.
+  /// The color applied on top of the primary color,
+  /// typically for text or icons.
   final Color onPrimary;
 
-  /// A variant of [onPrimary], used in slightly different contexts like hover or focus states.
+  /// A variant of [onPrimary], used in slightly different
+  /// contexts like hover or focus states.
   final Color onPrimaryVariant;
 
   /// A muted version of [onPrimary], used for less prominent text or icons.
   final Color onPrimaryMuted;
 
-  /// A shade of the primary color, typically used for shadows or background accents.
+  /// A shade of the primary color,
+  /// typically used for shadows or background accents.
   final Color shade;
 
   @override
@@ -75,8 +81,18 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
       tertiary: Color.lerp(tertiary, other.tertiary, t) ?? tertiary,
       highlight: Color.lerp(highlight, other.highlight, t) ?? highlight,
       onPrimary: Color.lerp(onPrimary, other.onPrimary, t) ?? onPrimary,
-      onPrimaryVariant: Color.lerp(onPrimaryVariant, other.onPrimaryVariant, t) ?? onPrimaryVariant,
-      onPrimaryMuted: Color.lerp(onPrimaryMuted, other.onPrimaryMuted, t) ?? onPrimaryMuted,
+      onPrimaryVariant: Color.lerp(
+            onPrimaryVariant,
+            other.onPrimaryVariant,
+            t,
+          ) ??
+          onPrimaryVariant,
+      onPrimaryMuted: Color.lerp(
+            onPrimaryMuted,
+            other.onPrimaryMuted,
+            t,
+          ) ??
+          onPrimaryMuted,
       shade: Color.lerp(shade, other.shade, t) ?? shade,
     );
   }
@@ -93,11 +109,15 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
 ///  - [backgroundColor] defines the background color of the container.
 ///  - [primaryBorderColor] defines the primary border color used on the top/left sides of the container.
 ///  - [secondaryBorderColor] defines the secondary border color used on the bottom/right sides of the container.
-///  - [labelTextStyle] defines an optional text style for labels within the container.
-///  - [padding] defines the inner padding for the container, with a default value of 10.
+///  - [labelTextStyle] defines an optional text style for labels
+/// within the container.
+///  - [padding] defines the inner padding for the container,
+/// with a default value of 10.
 ///
-/// You can customize the theme by using the `copyWith` method to override any of these properties,
-/// or by applying a new instance of `SteamContainerTheme` through the `ThemeData.extension`.
+/// You can customize the theme by using the `copyWith`
+/// method to override any of these properties,
+/// or by applying a new instance of `SteamContainerTheme`
+/// through the `ThemeData.extension`.
 ///
 /// {@endtemplate}
 class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
@@ -143,14 +163,25 @@ class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
   }
 
   @override
-  SteamContainerTheme lerp(ThemeExtension<SteamContainerTheme>? other, double t) {
+  SteamContainerTheme lerp(
+    ThemeExtension<SteamContainerTheme>? other,
+    double t,
+  ) {
     if (other is! SteamContainerTheme) {
       return this;
     }
     return SteamContainerTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      primaryBorderColor: Color.lerp(primaryBorderColor, other.primaryBorderColor, t)!,
-      secondaryBorderColor: Color.lerp(secondaryBorderColor, other.secondaryBorderColor, t)!,
+      primaryBorderColor: Color.lerp(
+        primaryBorderColor,
+        other.primaryBorderColor,
+        t,
+      )!,
+      secondaryBorderColor: Color.lerp(
+        secondaryBorderColor,
+        other.secondaryBorderColor,
+        t,
+      )!,
       labelTextStyle: TextStyle.lerp(labelTextStyle, other.labelTextStyle, t),
       padding: EdgeInsets.lerp(padding, other.padding, t) ?? padding,
     );
@@ -169,8 +200,8 @@ extension SteamBuildContext on BuildContext {
 
     if (ext == null) {
       throw Exception(
-        'Cannot find extension $T on theme. Make sure to create a Flutter Steam '
-        'theme using flutterSteamTheme method.',
+        'Cannot find extension $T on theme. Make sure to create a Flutter Steam'
+        ' theme using flutterSteamTheme method.',
       );
     }
 
@@ -188,7 +219,7 @@ ThemeData flutterSteamTheme({
     highlight: Color(0xFF968830), // Yellow/gold (accent/highlight)
     onPrimary: Color(0xFFFFFFFF), // High emphasis (titles, most important text)
     onPrimaryVariant: Color(0xFFD2DDCC), // Medium emphasis (normal text)
-    onPrimaryMuted: Color(0xFF757E6D), // Low emphasis (labels, less important values)
+    onPrimaryMuted: Color(0xFF757E6D), // Low emphasis (less important values)
     shade: Color(0xFF757E6D), // Grey (shade, border or secondary elements)
   ),
 }) {
