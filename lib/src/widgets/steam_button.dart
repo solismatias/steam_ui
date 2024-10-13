@@ -14,6 +14,7 @@ class SteamButton extends StatefulWidget {
     super.key,
     required this.onPressed,
     required this.child,
+    this.padding,
     this.showUnderlayTextStyle = true,
   }) : _isDisabled = onPressed == null;
 
@@ -24,6 +25,10 @@ class SteamButton extends StatefulWidget {
 
   /// Whether the button is disabled.
   final bool _isDisabled;
+
+  /// An optional padding to apply to the button, when null,
+  /// defaults to the padding in `SteamButtonTheme`.
+  final EdgeInsets? padding;
 
   /// The "label" of the button, which can be any widget (e.g., [Text]).
   final Widget child;
@@ -43,6 +48,10 @@ class _SteamButtonState extends State<SteamButton> {
   @override
   Widget build(BuildContext context) {
     final steamTheme = Theme.of(context).extension<SteamTheme>();
+    final buttonTheme = Theme.of(context).extension<SteamButtonTheme>();
+
+    // Use provided padding, or fall back to the theme's padding.
+    final buttonPadding = widget.padding ?? buttonTheme!.padding;
 
     return MouseRegion(
       child: GestureDetector(
@@ -51,8 +60,9 @@ class _SteamButtonState extends State<SteamButton> {
         onTapCancel: () => widget._isDisabled ? null : setState(() => _pressed = false),
         onTap: widget._isDisabled ? null : widget.onPressed,
         child: SteamContainer(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          padding: buttonPadding,
           alternateBorderColor: _pressed,
+          backgroundColor: buttonTheme?.backgroundColor,
           child: Transform.translate(
             offset: _pressed ? const Offset(1, 1) : const Offset(0, 0),
             child: Stack(
@@ -63,9 +73,10 @@ class _SteamButtonState extends State<SteamButton> {
                     child: widget.child as Text,
                   ),
                 DefaultTextStyle(
-                  style: TextStyle(
-                    color: widget._isDisabled ? steamTheme!.tertiary : steamTheme!.onPrimary,
-                  ),
+                  style: buttonTheme?.labelTextStyle ??
+                      TextStyle(
+                        color: widget._isDisabled ? steamTheme!.tertiary : steamTheme!.onPrimary,
+                      ),
                   child: widget.child,
                 ),
               ],

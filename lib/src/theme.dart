@@ -188,6 +188,69 @@ class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
   }
 }
 
+/// A customizable theme for buttons in the Steam UI package.
+///
+/// A [SteamButtonTheme] provides styling for the [SteamButton] widget,
+/// including background color, border colors, label text style, and padding.
+///
+/// By default, the [SteamButtonTheme] allows the following properties:
+///
+///  - [backgroundColor] defines the background color of the button.
+///  - [labelTextStyle] defines an optional text style for labels
+/// within the button.
+///  - [padding] defines the inner padding for the button,
+/// with a default value of horizontal 8 and vertical 4.
+///
+/// You can customize the theme by using the `copyWith`
+/// method to override any of these properties,
+/// or by applying a new instance of `SteamButtonTheme`
+/// through the `ThemeData.extension`.
+///
+class SteamButtonTheme extends ThemeExtension<SteamButtonTheme> {
+  const SteamButtonTheme({
+    required this.backgroundColor,
+    this.labelTextStyle,
+    this.padding = const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+  });
+
+  /// The background color of the button.
+  final Color backgroundColor;
+
+  /// The text style of the label, optional.
+  final TextStyle? labelTextStyle;
+
+  /// The padding inside the button, defaults to horizontal 8 and vertical 4.
+  final EdgeInsets padding;
+
+  @override
+  SteamButtonTheme copyWith({
+    Color? backgroundColor,
+    TextStyle? labelTextStyle,
+    EdgeInsets? padding,
+  }) {
+    return SteamButtonTheme(
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      labelTextStyle: labelTextStyle ?? this.labelTextStyle,
+      padding: padding ?? this.padding,
+    );
+  }
+
+  @override
+  SteamButtonTheme lerp(
+    ThemeExtension<SteamButtonTheme>? other,
+    double t,
+  ) {
+    if (other is! SteamButtonTheme) {
+      return this;
+    }
+    return SteamButtonTheme(
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
+      labelTextStyle: TextStyle.lerp(labelTextStyle, other.labelTextStyle, t),
+      padding: EdgeInsets.lerp(padding, other.padding, t) ?? padding,
+    );
+  }
+}
+
 /// Helper methods on [BuildContext] for the Flutter Steam.
 extension SteamBuildContext on BuildContext {
   /// Returns the extension of type [T] from the context.
@@ -229,6 +292,8 @@ ThemeData flutterSteamTheme({
     secondaryBorderColor: steamTheme.tertiary,
   );
 
+  final buttonTheme = SteamButtonTheme(backgroundColor: steamTheme.primary);
+
   return ThemeData(
     brightness: brightness,
     primaryColor: steamTheme.primary,
@@ -236,6 +301,7 @@ ThemeData flutterSteamTheme({
     extensions: [
       steamTheme,
       containerTheme,
+      buttonTheme,
     ],
   );
 }
