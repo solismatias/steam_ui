@@ -2,3 +2,5 @@
 library;
 
 export 'src/steam_ui.dart';
+export 'src/theme.dart';
+export 'src/widgets/widgets.dart';
