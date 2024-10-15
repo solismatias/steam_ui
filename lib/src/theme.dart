@@ -279,7 +279,7 @@ ThemeData flutterSteamTheme({
     primary: Color(0xFF4C5844), // Dark green (background)
     secondary: Color(0xFF5A6A50), // Lighter green (tabs and highlights)
     tertiary: Color(0xFF3E4637), // Lighter green (tabs and highlights)
-    highlight: Color(0xFF968830), // Yellow/gold (accent/highlight)
+    highlight: Color(0xFFC0B451), // Yellow/gold (accent/highlight)
     onPrimary: Color(0xFFFFFFFF), // High emphasis (titles, most important text)
     onPrimaryVariant: Color(0xFFD2DDCC), // Medium emphasis (normal text)
     onPrimaryMuted: Color(0xFF757E6D), // Low emphasis (less important values)
