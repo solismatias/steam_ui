@@ -251,6 +251,74 @@ class SteamButtonTheme extends ThemeExtension<SteamButtonTheme> {
   }
 }
 
+class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
+  /// {@template steam_textfield_theme}
+  /// A customizable theme for text fields in the Steam UI package.
+  ///
+  /// A [SteamTextFieldTheme] provides styling for the [SteamTextField] widget,
+  /// including background color, label text style, on-focus label color, and padding.
+  ///
+  /// By default, the [SteamTextFieldTheme] allows the following properties:
+  ///
+  ///  - [backgroundColor] defines the background color of the text field.
+  ///  - [labelTextStyle] defines the text style for the label.
+  ///  - [onFocusLabelColor] defines the color of the label when the text field is focused.
+  ///  - [padding] defines the padding inside the text field, with a default value.
+  ///
+  /// You can customize the theme by using the `copyWith` method to override any of these properties,
+  /// or by applying a new instance of `SteamTextFieldTheme` through the `ThemeData.extension`.
+  /// {@endtemplate}
+  const SteamTextFieldTheme({
+    required this.backgroundColor,
+    required this.labelTextStyle,
+    required this.onFocusLabelColor,
+    this.padding = const EdgeInsets.only(left: 3, top: 0, bottom: 3),
+  });
+
+  /// The background color of the text field.
+  final Color backgroundColor;
+
+  /// The text style of the label.
+  final TextStyle labelTextStyle;
+
+  /// The color of the label when the text field is focused.
+  final Color onFocusLabelColor;
+
+  /// The padding inside the text field, defaults to left: 3, top: 0, bottom: 3.
+  final EdgeInsets padding;
+
+  @override
+  SteamTextFieldTheme copyWith({
+    Color? backgroundColor,
+    TextStyle? labelTextStyle,
+    Color? onFocusLabelColor,
+    EdgeInsets? padding,
+  }) {
+    return SteamTextFieldTheme(
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      labelTextStyle: labelTextStyle ?? this.labelTextStyle,
+      onFocusLabelColor: onFocusLabelColor ?? this.onFocusLabelColor,
+      padding: padding ?? this.padding,
+    );
+  }
+
+  @override
+  SteamTextFieldTheme lerp(
+    ThemeExtension<SteamTextFieldTheme>? other,
+    double t,
+  ) {
+    if (other is! SteamTextFieldTheme) {
+      return this;
+    }
+    return SteamTextFieldTheme(
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
+      labelTextStyle: TextStyle.lerp(labelTextStyle, other.labelTextStyle, t)!,
+      onFocusLabelColor: Color.lerp(onFocusLabelColor, other.onFocusLabelColor, t)!,
+      padding: EdgeInsets.lerp(padding, other.padding, t) ?? padding,
+    );
+  }
+}
+
 /// Helper methods on [BuildContext] for the Flutter Steam.
 extension SteamBuildContext on BuildContext {
   /// Returns the extension of type [T] from the context.
@@ -294,6 +362,12 @@ ThemeData flutterSteamTheme({
 
   final buttonTheme = SteamButtonTheme(backgroundColor: steamTheme.primary);
 
+  final textFieldTheme = SteamTextFieldTheme(
+    backgroundColor: steamTheme.tertiary,
+    onFocusLabelColor: steamTheme.highlight,
+    labelTextStyle: TextStyle(color: steamTheme.onPrimary),
+  );
+
   return ThemeData(
     brightness: brightness,
     primaryColor: steamTheme.primary,
@@ -302,6 +376,7 @@ ThemeData flutterSteamTheme({
       steamTheme,
       containerTheme,
       buttonTheme,
+      textFieldTheme,
     ],
   );
 }
