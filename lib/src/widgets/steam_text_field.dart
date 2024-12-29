@@ -56,8 +56,9 @@ class _SteamTextFieldState extends State<SteamTextField> {
 
   @override
   void dispose() {
-    _focusNode.removeListener(_handleFocusChange);
-    _focusNode.dispose();
+    _focusNode
+      ..removeListener(_handleFocusChange)
+      ..dispose();
     super.dispose();
   }
 
