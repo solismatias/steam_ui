@@ -256,17 +256,19 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
   /// A customizable theme for text fields in the Steam UI package.
   ///
   /// A [SteamTextFieldTheme] provides styling for the [SteamTextField] widget,
-  /// including background color, label text style, on-focus label color, and padding.
+  /// including background color, label text style, on-focus label color
+  /// and padding.
   ///
   /// By default, the [SteamTextFieldTheme] allows the following properties:
   ///
   ///  - [backgroundColor] defines the background color of the text field.
   ///  - [labelTextStyle] defines the text style for the label.
-  ///  - [onFocusLabelColor] defines the color of the label when the text field is focused.
-  ///  - [padding] defines the padding inside the text field, with a default value.
+  ///  - [onFocusLabelColor] label color when the text field is focused.
+  ///  - [padding] padding inside the text field, with a default value.
   ///
-  /// You can customize the theme by using the `copyWith` method to override any of these properties,
-  /// or by applying a new instance of `SteamTextFieldTheme` through the `ThemeData.extension`.
+  /// Customize theme using `copyWith` method to override any property,
+  /// or by applying a new instance of `SteamTextFieldTheme`
+  /// through the `ThemeData.extension`.
   /// {@endtemplate}
   const SteamTextFieldTheme({
     required this.backgroundColor,
@@ -311,9 +313,21 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
       return this;
     }
     return SteamTextFieldTheme(
-      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      labelTextStyle: TextStyle.lerp(labelTextStyle, other.labelTextStyle, t)!,
-      onFocusLabelColor: Color.lerp(onFocusLabelColor, other.onFocusLabelColor, t)!,
+      backgroundColor: Color.lerp(
+        backgroundColor,
+        other.backgroundColor,
+        t,
+      )!,
+      labelTextStyle: TextStyle.lerp(
+        labelTextStyle,
+        other.labelTextStyle,
+        t,
+      )!,
+      onFocusLabelColor: Color.lerp(
+        onFocusLabelColor,
+        other.onFocusLabelColor,
+        t,
+      )!,
       padding: EdgeInsets.lerp(padding, other.padding, t) ?? padding,
     );
   }
