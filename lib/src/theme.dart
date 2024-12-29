@@ -188,6 +188,7 @@ class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
   }
 }
 
+/// {@template steam_button_theme}
 /// A customizable theme for buttons in the Steam UI package.
 ///
 /// A [SteamButtonTheme] provides styling for the [SteamButton] widget,
@@ -206,7 +207,9 @@ class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
 /// or by applying a new instance of `SteamButtonTheme`
 /// through the `ThemeData.extension`.
 ///
+/// {@endtemplate}
 class SteamButtonTheme extends ThemeExtension<SteamButtonTheme> {
+  /// {@macro steam_button_theme}
   const SteamButtonTheme({
     required this.backgroundColor,
     this.labelTextStyle,
@@ -251,25 +254,26 @@ class SteamButtonTheme extends ThemeExtension<SteamButtonTheme> {
   }
 }
 
+/// {@template steam_textfield_theme}
+/// A customizable theme for text fields in the Steam UI package.
+///
+/// A [SteamTextFieldTheme] provides styling for the [SteamTextField] widget,
+/// including background color, label text style, on-focus label color
+/// and padding.
+///
+/// By default, the [SteamTextFieldTheme] allows the following properties:
+///
+///  - [backgroundColor] defines the background color of the text field.
+///  - [labelTextStyle] defines the text style for the label.
+///  - [onFocusLabelColor] label color when the text field is focused.
+///  - [padding] padding inside the text field, with a default value.
+///
+/// Customize theme using `copyWith` method to override any property,
+/// or by applying a new instance of `SteamTextFieldTheme`
+/// through the `ThemeData.extension`.
+/// {@endtemplate}
 class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
-  /// {@template steam_textfield_theme}
-  /// A customizable theme for text fields in the Steam UI package.
-  ///
-  /// A [SteamTextFieldTheme] provides styling for the [SteamTextField] widget,
-  /// including background color, label text style, on-focus label color
-  /// and padding.
-  ///
-  /// By default, the [SteamTextFieldTheme] allows the following properties:
-  ///
-  ///  - [backgroundColor] defines the background color of the text field.
-  ///  - [labelTextStyle] defines the text style for the label.
-  ///  - [onFocusLabelColor] label color when the text field is focused.
-  ///  - [padding] padding inside the text field, with a default value.
-  ///
-  /// Customize theme using `copyWith` method to override any property,
-  /// or by applying a new instance of `SteamTextFieldTheme`
-  /// through the `ThemeData.extension`.
-  /// {@endtemplate}
+  /// {@macro steam_textfield_theme}
   const SteamTextFieldTheme({
     required this.backgroundColor,
     required this.labelTextStyle,
