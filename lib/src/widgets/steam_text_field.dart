@@ -80,7 +80,7 @@ class _SteamTextFieldState extends State<SteamTextField> {
         SteamContainer(
           backgroundColor: cTheme!.backgroundColor,
           alternateBorderColor: true,
-          padding: EdgeInsets.only(left: 3, top: 0, bottom: 3),
+          padding: EdgeInsets.only(left: 3, bottom: 3),
           child: TextField(
             focusNode: _focusNode, // Assign the focus node directly to the TextField
             controller: widget.controller,

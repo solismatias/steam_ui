@@ -272,7 +272,7 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
     required this.backgroundColor,
     required this.labelTextStyle,
     required this.onFocusLabelColor,
-    this.padding = const EdgeInsets.only(left: 3, top: 0, bottom: 3),
+    this.padding = const EdgeInsets.only(left: 3, bottom: 3),
   });
 
   /// The background color of the text field.
