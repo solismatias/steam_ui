@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
-import 'steam_container.dart';
+import 'package:steam_ui/src/widgets/steam_container.dart';
 
 /// A customizable button widget with a pressed state that adjusts its styling,
 /// including the option to show or hide underlay text when disabled.
