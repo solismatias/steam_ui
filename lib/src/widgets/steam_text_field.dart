@@ -10,13 +10,13 @@ class SteamTextField extends StatefulWidget {
   ///
   /// [onChanged] triggers when the text changes.
   const SteamTextField({
-    Key? key,
+    super.key,
     this.label,
     this.controller,
     this.onChanged,
     this.keyboardType,
     this.obscureText = false,
-  }) : super(key: key);
+  });
 
   /// An optional label displayed above the text field.
   final Widget? label;
