@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:steam_ui/src/widgets/steam_container.dart';
+import 'package:steam_ui/steam_ui.dart';
 
 /// {@template steam_theme}
 /// Class with general theme information for Flutter Steam.
