@@ -2,6 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
 import 'package:steam_ui/src/widgets/steam_container.dart';
 
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
 /// A customizable text field widget with label support and a focus state,
 /// using a container style based on the Steam UI theme.
 class SteamTextField extends StatefulWidget {
@@ -34,7 +48,7 @@ class SteamTextField extends StatefulWidget {
   final bool obscureText;
 
   @override
-  _SteamTextFieldState createState() => _SteamTextFieldState();
+  State<SteamTextField> createState() => _SteamTextFieldState();
 }
 
 class _SteamTextFieldState extends State<SteamTextField> {
