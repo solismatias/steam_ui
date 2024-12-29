@@ -27,7 +27,7 @@ class SteamTextField extends StatefulWidget {
   /// Callback that is triggered whenever the text changes.
   final ValueChanged<String>? onChanged;
 
-  /// The type of keyboard to use for editing the text (e.g., [TextInputType.text]).
+  /// Type of keyboard to use for editing the text (e.g., [TextInputType.text]).
   final TextInputType? keyboardType;
 
   /// Whether to obscure the text, useful for password fields.
@@ -66,24 +66,27 @@ class _SteamTextFieldState extends State<SteamTextField> {
   Widget build(BuildContext context) {
     final cTheme = Theme.of(context).extension<SteamTextFieldTheme>();
 
+    final unFocusColor = cTheme!.labelTextStyle.color;
+    final onFocusColor = cTheme.onFocusLabelColor;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Display label if provided
         if (widget.label != null)
           DefaultTextStyle(
-            style: cTheme!.labelTextStyle.copyWith(
-              color: _isFocused ? cTheme.onFocusLabelColor : cTheme.labelTextStyle.color,
+            style: cTheme.labelTextStyle.copyWith(
+              color: _isFocused ? onFocusColor : unFocusColor,
             ),
             child: widget.label!,
           ),
         if (widget.label != null) const SizedBox(height: 5),
         SteamContainer(
-          backgroundColor: cTheme!.backgroundColor,
+          backgroundColor: cTheme.backgroundColor,
           alternateBorderColor: true,
           padding: const EdgeInsets.only(left: 3, bottom: 3),
           child: TextField(
-            focusNode: _focusNode, // Assign the focus node directly to the TextField
+            focusNode: _focusNode,
             controller: widget.controller,
             onChanged: widget.onChanged,
             keyboardType: widget.keyboardType,
