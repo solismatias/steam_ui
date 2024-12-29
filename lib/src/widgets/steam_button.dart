@@ -64,7 +64,7 @@ class _SteamButtonState extends State<SteamButton> {
           alternateBorderColor: _pressed,
           backgroundColor: buttonTheme?.backgroundColor,
           child: Transform.translate(
-            offset: _pressed ? const Offset(1, 1) : const Offset(0, 0),
+            offset: _pressed ? const Offset(1, 1) : Offset.zero,
             child: Stack(
               children: [
                 if (widget._isDisabled && widget.showUnderlayTextStyle)

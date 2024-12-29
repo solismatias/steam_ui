@@ -76,18 +76,18 @@ class _SteamTextFieldState extends State<SteamTextField> {
             ),
             child: widget.label!,
           ),
-        if (widget.label != null) SizedBox(height: 5),
+        if (widget.label != null) const SizedBox(height: 5),
         SteamContainer(
           backgroundColor: cTheme!.backgroundColor,
           alternateBorderColor: true,
-          padding: EdgeInsets.only(left: 3, bottom: 3),
+          padding: const EdgeInsets.only(left: 3, bottom: 3),
           child: TextField(
             focusNode: _focusNode, // Assign the focus node directly to the TextField
             controller: widget.controller,
             onChanged: widget.onChanged,
             keyboardType: widget.keyboardType,
             obscureText: widget.obscureText,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               isCollapsed: true,
             ),
