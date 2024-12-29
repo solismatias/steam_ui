@@ -5,11 +5,11 @@ import 'package:steam_ui/src/widgets/steam_container.dart';
 /// A customizable button widget with a pressed state that adjusts its styling,
 /// including the option to show or hide underlay text when disabled.
 class SteamButton extends StatefulWidget {
-  /// Creates a [SteamButton] with a child widget and an optional callback function
+  /// Creates a [SteamButton] with a child and an optional callback function
   /// that is triggered when the button is pressed.
   ///
   /// If [onPressed] is null, the button is considered disabled.
-  /// Use [showUnderlayTextStyle] to control the visibility of the underlay text style.
+  /// [showUnderlayTextStyle] control the visibility of the underlay text style.
   const SteamButton({
     required this.onPressed,
     required this.child,
@@ -53,11 +53,17 @@ class _SteamButtonState extends State<SteamButton> {
     // Use provided padding, or fall back to the theme's padding.
     final buttonPadding = widget.padding ?? buttonTheme!.padding;
 
+    void handleTap({required bool isPressed}) {
+      if (!widget._isDisabled) {
+        setState(() => _pressed = isPressed);
+      }
+    }
+
     return MouseRegion(
       child: GestureDetector(
-        onTapDown: (_) => widget._isDisabled ? null : setState(() => _pressed = true),
-        onTapUp: (_) => widget._isDisabled ? null : setState(() => _pressed = false),
-        onTapCancel: () => widget._isDisabled ? null : setState(() => _pressed = false),
+        onTapDown: (_) => handleTap(isPressed: true),
+        onTapUp: (_) => handleTap(isPressed: false),
+        onTapCancel: () => handleTap(isPressed: false),
         onTap: widget._isDisabled ? null : widget.onPressed,
         child: SteamContainer(
           padding: buttonPadding,
@@ -72,11 +78,10 @@ class _SteamButtonState extends State<SteamButton> {
                     steamTheme: steamTheme,
                     child: widget.child as Text,
                   ),
-                DefaultTextStyle(
-                  style: buttonTheme?.labelTextStyle ??
-                      TextStyle(
-                        color: widget._isDisabled ? steamTheme!.tertiary : steamTheme!.onPrimary,
-                      ),
+                _DefaultTextStyle(
+                  buttonTheme: buttonTheme,
+                  steamTheme: steamTheme,
+                  isDisabled: widget._isDisabled,
                   child: widget.child,
                 ),
               ],
@@ -88,10 +93,35 @@ class _SteamButtonState extends State<SteamButton> {
   }
 }
 
+class _DefaultTextStyle extends StatelessWidget {
+  const _DefaultTextStyle({
+    required this.buttonTheme,
+    required this.steamTheme,
+    required this.isDisabled,
+    required this.child,
+  });
+
+  final SteamButtonTheme? buttonTheme;
+  final SteamTheme? steamTheme;
+  final bool isDisabled;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTextStyle(
+      style: buttonTheme?.labelTextStyle ??
+          TextStyle(
+            color: isDisabled ? steamTheme!.tertiary : steamTheme!.onPrimary,
+          ),
+      child: child,
+    );
+  }
+}
+
 /// A widget that renders an "underlay" text effect, typically used when
 /// the [SteamButton] is disabled to create a shadowed text effect.
 class _UnderlayText extends StatelessWidget {
-  /// Creates an underlay text effect based on the provided [steamTheme] and [child] widget.
+  /// Underlay text effect based on [steamTheme] and [child] widget.
   ///
   /// The [steamTheme] defines the color and styling of the underlay.
   const _UnderlayText({
@@ -102,7 +132,7 @@ class _UnderlayText extends StatelessWidget {
   /// The theme used to style the underlay effect.
   final SteamTheme? steamTheme;
 
-  /// The child widget, typically a [Text] widget, to which the underlay effect is applied.
+  /// The child widget, to which the underlay effect is applied.
   final Widget child;
 
   @override
