@@ -11,9 +11,9 @@ class SteamButton extends StatefulWidget {
   /// If [onPressed] is null, the button is considered disabled.
   /// Use [showUnderlayTextStyle] to control the visibility of the underlay text style.
   const SteamButton({
-    super.key,
     required this.onPressed,
     required this.child,
+    super.key,
     this.padding,
     this.showUnderlayTextStyle = true,
   }) : _isDisabled = onPressed == null;
