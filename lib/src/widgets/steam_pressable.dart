@@ -29,7 +29,7 @@ class SteamPressable extends StatefulWidget {
     this.onPressed,
     this.onPressStart,
     this.onPressEnd,
-    this.disabled,
+    this.disabled = false,
     this.behavior,
     this.enableOffsetEffect = true,
     super.key,
@@ -48,7 +48,7 @@ class SteamPressable extends StatefulWidget {
   final VoidCallback? onPressEnd;
 
   /// If `true`, disables interaction.
-  final bool? disabled;
+  final bool disabled;
 
   /// The gesture detector behavior.
   final HitTestBehavior? behavior;
@@ -72,9 +72,10 @@ class _SteamPressableState extends State<SteamPressable> {
 
   @override
   Widget build(BuildContext context) {
-    final hasListeners = widget.onPressed != null ||
-        widget.onPressStart != null ||
-        widget.onPressEnd != null;
+    final hasListeners = !widget.disabled &&
+        (widget.onPressed != null ||
+            widget.onPressStart != null ||
+            widget.onPressEnd != null);
 
     // Apply a slight offset when pressed, if the effect is enabled.
     final offset = (hasListeners && _pressed && widget.enableOffsetEffect)
