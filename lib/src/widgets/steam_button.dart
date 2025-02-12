@@ -68,6 +68,7 @@ class _SteamButtonState extends State<SteamButton> {
         alternateBorderColor: _pressed,
         backgroundColor: buttonTheme?.backgroundColor,
         child: Stack(
+          alignment: Alignment.center,
           children: [
             if (widget._isDisabled && widget.showUnderlayTextStyle)
               _UnderlayText(
