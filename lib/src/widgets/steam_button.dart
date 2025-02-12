@@ -63,6 +63,7 @@ class _SteamButtonState extends State<SteamButton> {
       onPressed: () => widget.onPressed?.call(),
       onPressStart: () => _handleTap(isPressed: true),
       onPressEnd: () => _handleTap(isPressed: false),
+      disabled: widget._isDisabled,
       child: SteamContainer(
         padding: buttonPadding,
         alternateBorderColor: _pressed,
