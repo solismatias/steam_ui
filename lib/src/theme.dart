@@ -254,6 +254,81 @@ class SteamButtonTheme extends ThemeExtension<SteamButtonTheme> {
   }
 }
 
+/// {@template steam_icon_button_theme}
+/// A customizable theme for icon buttons in the Steam UI package.
+///
+/// A [SteamIconButtonTheme] provides styling for the [SteamIconButton] widget,
+/// including background color, icon color, icon size, and padding.
+///
+/// By default, the [SteamIconButtonTheme] allows the following properties:
+///
+///  - [backgroundColor] defines the background color of the button.
+///  - [iconColor] defines the color of the icon.
+///  - [iconSize] defines the size of the icon, with a default value of 23.5.
+///  - [padding] defines the inner padding for the button, defaulting to 2.
+///
+/// You can customize the theme by using the `copyWith`
+/// method to override any of these properties,
+/// or by applying a new instance of `SteamIconButtonTheme`
+/// through the `ThemeData.extension`.
+///
+/// {@endtemplate}
+class SteamIconButtonTheme extends ThemeExtension<SteamIconButtonTheme> {
+  /// {@macro steam_icon_button_theme}
+  const SteamIconButtonTheme({
+    required this.backgroundColor,
+    required this.iconColor,
+    this.iconSize = 23.5,
+    this.padding = const EdgeInsets.all(2),
+  });
+
+  /// The background color of the button.
+  final Color backgroundColor;
+
+  /// The color of the icon.
+  final Color iconColor;
+
+  /// The size of the icon, defaults to 23.5.
+  final double iconSize;
+
+  /// The padding inside the button, defaults to 2.
+  final EdgeInsets padding;
+
+  @override
+  SteamIconButtonTheme copyWith({
+    Color? backgroundColor,
+    Color? iconColor,
+    double? iconSize,
+    EdgeInsets? padding,
+  }) {
+    return SteamIconButtonTheme(
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      iconColor: iconColor ?? this.iconColor,
+      iconSize: iconSize ?? this.iconSize,
+      padding: padding ?? this.padding,
+    );
+  }
+
+  @override
+  SteamIconButtonTheme lerp(
+    ThemeExtension<SteamIconButtonTheme>? other,
+    double t,
+  ) {
+    if (other is! SteamIconButtonTheme) {
+      return this;
+    }
+    return SteamIconButtonTheme(
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
+      iconColor: Color.lerp(iconColor, other.iconColor, t)!,
+      iconSize: Tween<double>(
+        begin: iconSize,
+        end: other.iconSize,
+      ).transform(t),
+      padding: EdgeInsets.lerp(padding, other.padding, t) ?? padding,
+    );
+  }
+}
+
 /// {@template steam_textfield_theme}
 /// A customizable theme for text fields in the Steam UI package.
 ///
@@ -380,6 +455,11 @@ ThemeData flutterSteamTheme({
 
   final buttonTheme = SteamButtonTheme(backgroundColor: steamTheme.primary);
 
+  final buttonIconTheme = SteamIconButtonTheme(
+    backgroundColor: steamTheme.primary,
+    iconColor: steamTheme.onPrimaryVariant,
+  );
+
   final textFieldTheme = SteamTextFieldTheme(
     backgroundColor: steamTheme.tertiary,
     onFocusLabelColor: steamTheme.highlight,
@@ -394,6 +474,7 @@ ThemeData flutterSteamTheme({
       steamTheme,
       containerTheme,
       buttonTheme,
+      buttonIconTheme,
       textFieldTheme,
     ],
   );
