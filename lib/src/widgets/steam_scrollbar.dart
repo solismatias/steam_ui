@@ -63,9 +63,14 @@ class _CustomScrollbarState extends State<SteamScrollbar> {
 
   /// Calculates the size of the scrollbar thumb based on the scrollable area.
   double _calculateThumbSize(double widgetSize) {
+    final maxExtent = widget.controller.position.maxScrollExtent;
+
     return max(
-      (widgetSize / widget.controller.position.maxScrollExtent) * 250,
-      widgetSize / 25,
+      min(
+        (widgetSize / (maxExtent + widgetSize)) * widgetSize,
+        widgetSize * 0.8,
+      ),
+      SteamScrollbar.scrollbarSize / 2,
     );
   }
 
