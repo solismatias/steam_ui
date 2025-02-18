@@ -12,6 +12,7 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
     required this.secondary,
     required this.tertiary,
     required this.highlight,
+    required this.highlightMuted,
     required this.onPrimary,
     required this.onPrimaryVariant,
     required this.onPrimaryMuted,
@@ -32,6 +33,9 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
 
   /// The highlight color, used to draw attention to important elements.
   final Color highlight;
+
+  /// The muted highlight color, used to draw attention to important elements.
+  final Color highlightMuted;
 
   /// The color applied on top of the primary color,
   /// typically for text or icons.
@@ -54,6 +58,7 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
     Color? secondary,
     Color? tertiary,
     Color? highlight,
+    Color? highlightMuted,
     Color? onPrimary,
     Color? onPrimaryVariant,
     Color? onPrimaryMuted,
@@ -64,6 +69,7 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
       secondary: secondary ?? this.secondary,
       tertiary: tertiary ?? this.tertiary,
       highlight: highlight ?? this.highlight,
+      highlightMuted: highlightMuted ?? this.highlightMuted,
       onPrimary: onPrimary ?? this.onPrimary,
       onPrimaryVariant: onPrimaryVariant ?? this.onPrimaryVariant,
       onPrimaryMuted: onPrimaryMuted ?? this.onPrimaryMuted,
@@ -80,6 +86,8 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
       secondary: Color.lerp(secondary, other.secondary, t) ?? secondary,
       tertiary: Color.lerp(tertiary, other.tertiary, t) ?? tertiary,
       highlight: Color.lerp(highlight, other.highlight, t) ?? highlight,
+      highlightMuted:
+          Color.lerp(highlightMuted, other.highlightMuted, t) ?? highlightMuted,
       onPrimary: Color.lerp(onPrimary, other.onPrimary, t) ?? onPrimary,
       onPrimaryVariant: Color.lerp(
             onPrimaryVariant,
@@ -412,6 +420,87 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
   }
 }
 
+/// {@template steam_dropdown_theme}
+/// A customizable theme for dropdown menus in the Steam UI package.
+///
+/// Defines the appearance of a dropdown menu, including:
+/// - [backgroundColor]: Background color of the dropdown menu.
+/// - [onSelectedColor]: Background color of a selected entry.
+/// - [entryTextStyle]: Text style for dropdown options.
+/// - [inputTextStyle]: Text style for the input box.
+/// - [inputPadding]: Padding inside the input box.
+/// - [dialogPadding]: Padding inside the dropdown menu.
+///
+/// Use `copyWith` to modify specific properties or provide a new instance
+/// to `ThemeData.extension`.
+/// {@endtemplate}
+class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
+  /// {@macro steam_dropdown_theme}
+  const SteamDropdownTheme({
+    required this.backgroundColor,
+    required this.onSelectedColor,
+    this.entryTextStyle,
+    this.inputTextStyle,
+    this.inputPadding = const EdgeInsets.only(left: 3, bottom: 3),
+    this.dialogPadding = const EdgeInsets.symmetric(vertical: 5, horizontal: 2),
+  });
+
+  /// The background color of the dropdown menu.
+  final Color backgroundColor;
+
+  /// The background color of a selected dropdown entry.
+  final Color onSelectedColor;
+
+  /// The text style of dropdown menu entries.
+  final TextStyle? entryTextStyle;
+
+  /// The text style of the dropdown input field.
+  final TextStyle? inputTextStyle;
+
+  /// The padding inside the input box.
+  final EdgeInsets inputPadding;
+
+  /// The padding inside the dropdown menu.
+  final EdgeInsets dialogPadding;
+
+  @override
+  SteamDropdownTheme copyWith({
+    Color? backgroundColor,
+    Color? onSelectedColor,
+    TextStyle? entryTextStyle,
+    TextStyle? inputTextStyle,
+    EdgeInsets? inputPadding,
+    EdgeInsets? dialogPadding,
+  }) {
+    return SteamDropdownTheme(
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      onSelectedColor: onSelectedColor ?? this.onSelectedColor,
+      entryTextStyle: entryTextStyle ?? this.entryTextStyle,
+      inputTextStyle: inputTextStyle ?? this.inputTextStyle,
+      inputPadding: inputPadding ?? this.inputPadding,
+      dialogPadding: dialogPadding ?? this.dialogPadding,
+    );
+  }
+
+  @override
+  SteamDropdownTheme lerp(
+    ThemeExtension<SteamDropdownTheme>? other,
+    double t,
+  ) {
+    if (other is! SteamDropdownTheme) return this;
+    return SteamDropdownTheme(
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
+      onSelectedColor: Color.lerp(onSelectedColor, other.onSelectedColor, t)!,
+      entryTextStyle: TextStyle.lerp(entryTextStyle, other.entryTextStyle, t),
+      inputTextStyle: TextStyle.lerp(inputTextStyle, other.inputTextStyle, t),
+      inputPadding:
+          EdgeInsets.lerp(inputPadding, other.inputPadding, t) ?? inputPadding,
+      dialogPadding: EdgeInsets.lerp(dialogPadding, other.dialogPadding, t) ??
+          dialogPadding,
+    );
+  }
+}
+
 /// Helper methods on [BuildContext] for the Flutter Steam.
 extension SteamBuildContext on BuildContext {
   /// Returns the extension of type [T] from the context.
@@ -440,7 +529,8 @@ ThemeData flutterSteamTheme({
     primary: Color(0xFF4C5844), // Dark green (background)
     secondary: Color(0xFF5A6A50), // Lighter green (tabs and highlights)
     tertiary: Color(0xFF3E4637), // Lighter green (tabs and highlights)
-    highlight: Color(0xFF978630), // Yellow/gold (accent/highlight)
+    highlight: Color(0xFFBEB550), // Yellow/gold (accent/highlight)
+    highlightMuted: Color(0xFF978630), // Low emphasis (accent/highlight)
     onPrimary: Color(0xFFFFFFFF), // High emphasis (titles, most important text)
     onPrimaryVariant: Color(0xFFD2DDCC), // Medium emphasis (normal text)
     onPrimaryMuted: Color(0xFF757E6D), // Low emphasis (less important values)
@@ -466,6 +556,12 @@ ThemeData flutterSteamTheme({
     labelTextStyle: TextStyle(color: steamTheme.onPrimary),
   );
 
+  final dropdownTheme = SteamDropdownTheme(
+    backgroundColor: steamTheme.tertiary,
+    inputTextStyle: TextStyle(color: steamTheme.onPrimaryVariant),
+    onSelectedColor: steamTheme.highlightMuted,
+  );
+
   return ThemeData(
     brightness: brightness,
     primaryColor: steamTheme.primary,
@@ -476,6 +572,7 @@ ThemeData flutterSteamTheme({
       buttonTheme,
       buttonIconTheme,
       textFieldTheme,
+      dropdownTheme,
     ],
   );
 }
