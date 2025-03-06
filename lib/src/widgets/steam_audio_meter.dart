@@ -20,21 +20,24 @@ class SteamAudioMeter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: List.generate(20, (index) {
-        final threshold = (index + 1) * 5;
-        final isActive = value >= threshold;
-        return Container(
-          width: 8,
-          height: 24,
-          margin: const EdgeInsets.symmetric(horizontal: 2),
-          decoration: BoxDecoration(
-            color: isActive
-                ? _getColor(index)
-                : Color.lerp(_getColor(index), Colors.black, 0.5),
-          ),
-        );
-      }),
+    return SizedBox(
+      height: 25,
+      child: Row(
+        children: List.generate(20, (index) {
+          final threshold = (index + 1) * 5;
+          final isActive = value >= threshold;
+          return Flexible(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 2),
+              decoration: BoxDecoration(
+                color: isActive
+                    ? _getColor(index)
+                    : Color.lerp(_getColor(index), Colors.black, 0.5),
+              ),
+            ),
+          );
+        }),
+      ),
     );
   }
 
