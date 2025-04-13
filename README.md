@@ -21,7 +21,7 @@ Since this package is not available on pub.dev, you can install it using one of 
     ```yaml
     dependencies:
       steam_ui:
-        path: ../steam_ui  # Adjust the path as needed
+        path: ../steam_ui
     ```
 
 2. **Use the GitHub repository directly**
@@ -56,6 +56,7 @@ MaterialApp(
  - SteamDropdown
  - SteamSingleChildScrollview
  - SteamAudioMeter
+ - SteamLoader
 
 
 
