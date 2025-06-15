@@ -35,6 +35,7 @@ class SteamDropdownMenu<T> extends StatefulWidget {
     required this.entries,
     this.initialValue,
     this.onChanged,
+    this.label,
     super.key,
   });
 
@@ -46,6 +47,9 @@ class SteamDropdownMenu<T> extends StatefulWidget {
 
   /// A callback triggered when the selection changes.
   final void Function(T value)? onChanged;
+
+  /// An optional label displayed above the text field.
+  final Widget? label;
 
   @override
   State<SteamDropdownMenu<T>> createState() => _SteamDropdownMenuState<T>();
@@ -59,11 +63,15 @@ class _SteamDropdownMenuState<T> extends State<SteamDropdownMenu<T>> {
   final GlobalKey _inputBoxKey = GlobalKey();
   double _inputBoxWidth = 200;
 
+  // Track the "focused" state (when dropdown is open)
+  bool _isOpen = false;
+
   /// Toggles the dropdown menu visibility.
   void _toggleMenu() {
     setState(() {
       if (_controller.isShowing) {
         _controller.hide();
+        _isOpen = false;
       } else {
         // Determine the width of the button when opening the dropdown
         final renderBox =
@@ -74,6 +82,7 @@ class _SteamDropdownMenuState<T> extends State<SteamDropdownMenu<T>> {
           });
         }
         _controller.show();
+        _isOpen = true;
       }
     });
   }
@@ -94,36 +103,57 @@ class _SteamDropdownMenuState<T> extends State<SteamDropdownMenu<T>> {
 
   @override
   Widget build(BuildContext context) {
+    final textFieldTheme = Theme.of(context).extension<SteamTextFieldTheme>();
+
     // Find the currently selected entry
     final result =
         widget.entries.where((entry) => entry.value == _selectedValue);
     final selectedEntry = result.isNotEmpty ? result.first : null;
 
-    return CompositedTransformTarget(
-      link: _link,
-      child: OverlayPortal(
-        controller: _controller,
-        overlayChildBuilder: (context) {
-          return CompositedTransformFollower(
-            link: _link,
-            targetAnchor: Alignment.bottomLeft,
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: _DialogContent(
-                width: _inputBoxWidth,
-                selectedValue: _selectedValue,
-                entries: widget.entries,
-                onEntrySelected: onEntrySelected,
-              ),
+    final unFocusColor = textFieldTheme?.labelTextStyle.color;
+    final onFocusColor = textFieldTheme?.onFocusLabelColor;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Display label if provided
+        if (widget.label != null)
+          DefaultTextStyle(
+            style:
+                (textFieldTheme?.labelTextStyle ?? const TextStyle()).copyWith(
+              color: _isOpen ? onFocusColor : unFocusColor,
             ),
-          );
-        },
-        child: _InputBox(
-          selectedEntry: selectedEntry,
-          onTap: _toggleMenu,
-          key: _inputBoxKey,
+            child: widget.label!,
+          ),
+        if (widget.label != null) const SizedBox(height: 5),
+
+        CompositedTransformTarget(
+          link: _link,
+          child: OverlayPortal(
+            controller: _controller,
+            overlayChildBuilder: (context) {
+              return CompositedTransformFollower(
+                link: _link,
+                targetAnchor: Alignment.bottomLeft,
+                child: Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: _DialogContent(
+                    width: _inputBoxWidth,
+                    selectedValue: _selectedValue,
+                    entries: widget.entries,
+                    onEntrySelected: onEntrySelected,
+                  ),
+                ),
+              );
+            },
+            child: _InputBox(
+              selectedEntry: selectedEntry,
+              onTap: _toggleMenu,
+              key: _inputBoxKey,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
