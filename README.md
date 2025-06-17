@@ -2,7 +2,10 @@
 
 UI library inspired by the classic Steam interface from the early 2000s (Work in progress)
 
-![screenshot](https://github.com/user-attachments/assets/752ebe0a-6aab-4eca-9659-9352c5465021)
+![Screenshot from 2025-06-16 22-35-08](https://github.com/user-attachments/assets/c2a1a9c4-c7e0-4375-99cd-98cda2c58a58)
+
+
+
 
 ## Installation 💻
 
