@@ -114,6 +114,7 @@ class _SteamDropdownMenuState<T> extends State<SteamDropdownMenu<T>> {
     final onFocusColor = textFieldTheme?.onFocusLabelColor;
 
     return Column(
+      key: _inputBoxKey,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Display label if provided
@@ -149,7 +150,6 @@ class _SteamDropdownMenuState<T> extends State<SteamDropdownMenu<T>> {
             child: _InputBox(
               selectedEntry: selectedEntry,
               onTap: _toggleMenu,
-              key: _inputBoxKey,
             ),
           ),
         ),
@@ -222,7 +222,6 @@ class _InputBox extends StatelessWidget {
   const _InputBox({
     required this.selectedEntry,
     required this.onTap,
-    required super.key,
   });
 
   /// The currently selected dropdown entry, if any.
@@ -237,7 +236,6 @@ class _InputBox extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SteamContainer(
-        key: key, // Assign key to track size
         backgroundColor: dropdownTheme!.backgroundColor,
         alternateBorderColor: true,
         padding: dropdownTheme.inputPadding,
