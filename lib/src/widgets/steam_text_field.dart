@@ -91,6 +91,7 @@ class _SteamTextFieldState extends State<SteamTextField> {
             onChanged: widget.onChanged,
             keyboardType: widget.keyboardType,
             obscureText: widget.obscureText,
+            style: cTheme.inputTextStyle,
             decoration: const InputDecoration(
               border: InputBorder.none,
               isCollapsed: true,

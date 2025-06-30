@@ -103,15 +103,15 @@ class _SteamDropdownMenuState<T> extends State<SteamDropdownMenu<T>> {
 
   @override
   Widget build(BuildContext context) {
-    final textFieldTheme = Theme.of(context).extension<SteamTextFieldTheme>();
+    final dropdownTheme = Theme.of(context).extension<SteamTextFieldTheme>();
 
     // Find the currently selected entry
     final result =
         widget.entries.where((entry) => entry.value == _selectedValue);
     final selectedEntry = result.isNotEmpty ? result.first : null;
 
-    final unFocusColor = textFieldTheme?.labelTextStyle.color;
-    final onFocusColor = textFieldTheme?.onFocusLabelColor;
+    final unFocusColor = dropdownTheme!.labelTextStyle.color;
+    final onFocusColor = dropdownTheme.onFocusLabelColor;
 
     return Column(
       key: _inputBoxKey,
@@ -120,8 +120,7 @@ class _SteamDropdownMenuState<T> extends State<SteamDropdownMenu<T>> {
         // Display label if provided
         if (widget.label != null)
           DefaultTextStyle(
-            style:
-                (textFieldTheme?.labelTextStyle ?? const TextStyle()).copyWith(
+            style: dropdownTheme.labelTextStyle.copyWith(
               color: _isOpen ? onFocusColor : unFocusColor,
             ),
             child: widget.label!,
@@ -189,7 +188,7 @@ class _DialogContent<T> extends StatelessWidget {
     return SteamContainer(
       padding: EdgeInsets.zero,
       width: width,
-      height: 200, // Fixed height for dropdown list
+      height: 200,
       child: SteamSingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -217,7 +216,7 @@ class _DialogContent<T> extends StatelessWidget {
   }
 }
 
-/// A UI component representing the dropdown input box.
+/// A UI component representing the input box.
 class _InputBox extends StatelessWidget {
   const _InputBox({
     required this.selectedEntry,
@@ -242,10 +241,12 @@ class _InputBox extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(width: 8),
             Expanded(
               child: selectedEntry != null
-                  ? Text(selectedEntry?.label ?? '')
+                  ? Text(
+                      selectedEntry?.label ?? '',
+                      style: dropdownTheme.inputTextStyle,
+                    )
                   : const SizedBox(),
             ),
             const SizedBox(width: 8),

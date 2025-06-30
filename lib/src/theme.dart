@@ -341,13 +341,14 @@ class SteamIconButtonTheme extends ThemeExtension<SteamIconButtonTheme> {
 /// A customizable theme for text fields in the Steam UI package.
 ///
 /// A [SteamTextFieldTheme] provides styling for the [SteamTextField] widget,
-/// including background color, label text style, on-focus label color
-/// and padding.
+/// including background color, label text style, input text style,
+/// on-focus label color and padding.
 ///
 /// By default, the [SteamTextFieldTheme] allows the following properties:
 ///
 ///  - [backgroundColor] defines the background color of the text field.
 ///  - [labelTextStyle] defines the text style for the label.
+///  - [inputTextStyle] defines the text style for the input value.
 ///  - [onFocusLabelColor] label color when the text field is focused.
 ///  - [padding] padding inside the text field, with a default value.
 ///
@@ -361,6 +362,7 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
     required this.backgroundColor,
     required this.labelTextStyle,
     required this.onFocusLabelColor,
+    this.inputTextStyle,
     this.padding = const EdgeInsets.only(left: 3, bottom: 3),
   });
 
@@ -369,6 +371,9 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
 
   /// The text style of the label.
   final TextStyle labelTextStyle;
+
+  /// The text style of the input value.
+  final TextStyle? inputTextStyle;
 
   /// The color of the label when the text field is focused.
   final Color onFocusLabelColor;
@@ -380,12 +385,14 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
   SteamTextFieldTheme copyWith({
     Color? backgroundColor,
     TextStyle? labelTextStyle,
+    TextStyle? inputTextStyle,
     Color? onFocusLabelColor,
     EdgeInsets? padding,
   }) {
     return SteamTextFieldTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       labelTextStyle: labelTextStyle ?? this.labelTextStyle,
+      inputTextStyle: inputTextStyle ?? this.inputTextStyle,
       onFocusLabelColor: onFocusLabelColor ?? this.onFocusLabelColor,
       padding: padding ?? this.padding,
     );
@@ -410,6 +417,11 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
         other.labelTextStyle,
         t,
       )!,
+      inputTextStyle: TextStyle.lerp(
+        inputTextStyle,
+        other.inputTextStyle,
+        t,
+      ),
       onFocusLabelColor: Color.lerp(
         onFocusLabelColor,
         other.onFocusLabelColor,
@@ -427,7 +439,9 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
 /// - [backgroundColor]: Background color of the dropdown menu.
 /// - [onSelectedColor]: Background color of a selected entry.
 /// - [entryTextStyle]: Text style for dropdown options.
+/// - [labelTextStyle] defines the text style for the label.
 /// - [inputTextStyle]: Text style for the input box.
+/// - [onFocusLabelColor] label color when the text field is focused.
 /// - [inputPadding]: Padding inside the input box.
 /// - [dialogPadding]: Padding inside the dropdown menu.
 ///
@@ -439,6 +453,8 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
   const SteamDropdownTheme({
     required this.backgroundColor,
     required this.onSelectedColor,
+    required this.labelTextStyle,
+    required this.onFocusLabelColor,
     this.entryTextStyle,
     this.inputTextStyle,
     this.inputPadding = const EdgeInsets.only(left: 3, bottom: 3),
@@ -454,8 +470,14 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
   /// The text style of dropdown menu entries.
   final TextStyle? entryTextStyle;
 
+  /// The text style of the label.
+  final TextStyle labelTextStyle;
+
   /// The text style of the dropdown input field.
   final TextStyle? inputTextStyle;
+
+  /// The color of the label when the text field is focused.
+  final Color onFocusLabelColor;
 
   /// The padding inside the input box.
   final EdgeInsets inputPadding;
@@ -466,9 +488,11 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
   @override
   SteamDropdownTheme copyWith({
     Color? backgroundColor,
+    TextStyle? labelTextStyle,
     Color? onSelectedColor,
     TextStyle? entryTextStyle,
     TextStyle? inputTextStyle,
+    Color? onFocusLabelColor,
     EdgeInsets? inputPadding,
     EdgeInsets? dialogPadding,
   }) {
@@ -476,7 +500,9 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
       backgroundColor: backgroundColor ?? this.backgroundColor,
       onSelectedColor: onSelectedColor ?? this.onSelectedColor,
       entryTextStyle: entryTextStyle ?? this.entryTextStyle,
+      labelTextStyle: labelTextStyle ?? this.labelTextStyle,
       inputTextStyle: inputTextStyle ?? this.inputTextStyle,
+      onFocusLabelColor: onFocusLabelColor ?? this.onFocusLabelColor,
       inputPadding: inputPadding ?? this.inputPadding,
       dialogPadding: dialogPadding ?? this.dialogPadding,
     );
@@ -492,7 +518,17 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       onSelectedColor: Color.lerp(onSelectedColor, other.onSelectedColor, t)!,
       entryTextStyle: TextStyle.lerp(entryTextStyle, other.entryTextStyle, t),
+      labelTextStyle: TextStyle.lerp(
+        labelTextStyle,
+        other.labelTextStyle,
+        t,
+      )!,
       inputTextStyle: TextStyle.lerp(inputTextStyle, other.inputTextStyle, t),
+      onFocusLabelColor: Color.lerp(
+        onFocusLabelColor,
+        other.onFocusLabelColor,
+        t,
+      )!,
       inputPadding:
           EdgeInsets.lerp(inputPadding, other.inputPadding, t) ?? inputPadding,
       dialogPadding: EdgeInsets.lerp(dialogPadding, other.dialogPadding, t) ??
@@ -554,11 +590,20 @@ ThemeData flutterSteamTheme({
     backgroundColor: steamTheme.tertiary,
     onFocusLabelColor: steamTheme.highlight,
     labelTextStyle: TextStyle(color: steamTheme.onPrimary),
+    inputTextStyle: TextStyle(
+      color: steamTheme.onPrimaryVariant,
+      fontSize: 14,
+    ),
   );
 
   final dropdownTheme = SteamDropdownTheme(
     backgroundColor: steamTheme.tertiary,
-    inputTextStyle: TextStyle(color: steamTheme.onPrimaryVariant),
+    labelTextStyle: TextStyle(color: steamTheme.onPrimary),
+    inputTextStyle: TextStyle(
+      color: steamTheme.onPrimaryVariant,
+      fontSize: 14,
+    ),
+    onFocusLabelColor: steamTheme.highlight,
     onSelectedColor: steamTheme.highlightMuted,
   );
 
