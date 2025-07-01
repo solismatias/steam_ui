@@ -184,14 +184,7 @@ class EmployeeFormHeader extends StatelessWidget {
           'Employee of the Month',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        SteamIconButton(
-          icon: Icons.close,
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Close button pressed')),
-            );
-          },
-        ),
+        SteamIconButton(icon: Icons.close, onPressed: () {}),
       ],
     );
   }
@@ -426,32 +419,11 @@ class EmployeeFormActions extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        SteamButton(
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Changes saved successfully!')),
-            );
-          },
-          child: const Text('OK'),
-        ),
+        SteamButton(onPressed: () {}, child: const Text('OK')),
         const SizedBox(width: 8),
-        SteamButton(
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Operation cancelled')),
-            );
-          },
-          child: const Text('Cancel'),
-        ),
+        SteamButton(onPressed: () {}, child: const Text('Cancel')),
         const SizedBox(width: 8),
-        SteamButton(
-          onPressed: () {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(const SnackBar(content: Text('Settings applied')));
-          },
-          child: const Text('Apply'),
-        ),
+        SteamButton(onPressed: () {}, child: const Text('Apply')),
       ],
     );
   }
