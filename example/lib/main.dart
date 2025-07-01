@@ -373,7 +373,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Microphone Input'),
+                  const Text('Microphone Input (fake)'),
                   Text('${_audioLevel.round()}%'),
                 ],
               ),
