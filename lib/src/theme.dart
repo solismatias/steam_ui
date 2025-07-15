@@ -364,6 +364,8 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
     required this.onFocusLabelColor,
     this.inputTextStyle,
     this.padding = const EdgeInsets.only(left: 3, bottom: 3),
+    this.disabledBackgroundColor,
+    this.disabledTextStyle,
   });
 
   /// The background color of the text field.
@@ -381,6 +383,12 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
   /// The padding inside the text field, defaults to left: 3, top: 0, bottom: 3.
   final EdgeInsets padding;
 
+  /// The background color of the text field when it is disabled.
+  final Color? disabledBackgroundColor;
+
+  /// The text style of the text field when it is disabled.
+  final TextStyle? disabledTextStyle;
+
   @override
   SteamTextFieldTheme copyWith({
     Color? backgroundColor,
@@ -388,6 +396,8 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
     TextStyle? inputTextStyle,
     Color? onFocusLabelColor,
     EdgeInsets? padding,
+    Color? disabledBackgroundColor,
+    TextStyle? disabledTextStyle,
   }) {
     return SteamTextFieldTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -395,6 +405,9 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
       inputTextStyle: inputTextStyle ?? this.inputTextStyle,
       onFocusLabelColor: onFocusLabelColor ?? this.onFocusLabelColor,
       padding: padding ?? this.padding,
+      disabledBackgroundColor:
+          disabledBackgroundColor ?? this.disabledBackgroundColor,
+      disabledTextStyle: disabledTextStyle ?? this.disabledTextStyle,
     );
   }
 
@@ -428,6 +441,16 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
         t,
       )!,
       padding: EdgeInsets.lerp(padding, other.padding, t) ?? padding,
+      disabledBackgroundColor: Color.lerp(
+        disabledBackgroundColor,
+        other.disabledBackgroundColor,
+        t,
+      ),
+      disabledTextStyle: TextStyle.lerp(
+        disabledTextStyle,
+        other.disabledTextStyle,
+        t,
+      ),
     );
   }
 }
@@ -592,6 +615,11 @@ ThemeData flutterSteamTheme({
     labelTextStyle: TextStyle(color: steamTheme.onPrimary),
     inputTextStyle: TextStyle(
       color: steamTheme.onPrimaryVariant,
+      fontSize: 14,
+    ),
+    disabledBackgroundColor: steamTheme.tertiary.withAlpha(128),
+    disabledTextStyle: TextStyle(
+      color: steamTheme.onPrimaryMuted.withAlpha(128),
       fontSize: 14,
     ),
   );

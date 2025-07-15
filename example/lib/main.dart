@@ -353,6 +353,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
         SteamTextField(
           label: const Text('Sector'),
           controller: _sectorController,
+          enabled: false,
         ),
         const SizedBox(height: 16),
         SteamDropdownMenu(

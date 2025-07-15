@@ -16,6 +16,7 @@ class SteamTextField extends StatefulWidget {
     this.onChanged,
     this.keyboardType,
     this.obscureText = false,
+    this.enabled = true,
   });
 
   /// An optional label displayed above the text field.
@@ -32,6 +33,9 @@ class SteamTextField extends StatefulWidget {
 
   /// Whether to obscure the text, useful for password fields.
   final bool obscureText;
+
+  /// Whether the text field is enabled or disabled.
+  final bool enabled;
 
   @override
   State<SteamTextField> createState() => _SteamTextFieldState();
@@ -82,7 +86,8 @@ class _SteamTextFieldState extends State<SteamTextField> {
           ),
         if (widget.label != null) const SizedBox(height: 5),
         SteamContainer(
-          backgroundColor: cTheme.backgroundColor,
+          backgroundColor:
+              widget.enabled ? cTheme.backgroundColor : cTheme.disabledBackgroundColor,
           alternateBorderColor: true,
           padding: const EdgeInsets.only(left: 3, bottom: 3),
           child: TextField(
@@ -91,11 +96,12 @@ class _SteamTextFieldState extends State<SteamTextField> {
             onChanged: widget.onChanged,
             keyboardType: widget.keyboardType,
             obscureText: widget.obscureText,
-            style: cTheme.inputTextStyle,
+            style: widget.enabled ? cTheme.inputTextStyle : cTheme.disabledTextStyle,
             decoration: const InputDecoration(
               border: InputBorder.none,
               isCollapsed: true,
             ),
+            enabled: widget.enabled,
           ),
         ),
       ],
