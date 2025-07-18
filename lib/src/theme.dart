@@ -461,6 +461,7 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
 /// Defines the appearance of a dropdown menu, including:
 /// - [backgroundColor]: Background color of the dropdown menu.
 /// - [onSelectedColor]: Background color of a selected entry.
+/// - [onHoverColor]: Background color of a hovered entry.
 /// - [entryTextStyle]: Text style for dropdown options.
 /// - [labelTextStyle] defines the text style for the label.
 /// - [inputTextStyle]: Text style for the input box.
@@ -476,6 +477,7 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
   const SteamDropdownTheme({
     required this.backgroundColor,
     required this.onSelectedColor,
+    required this.onHoverColor,
     required this.labelTextStyle,
     required this.onFocusLabelColor,
     this.entryTextStyle,
@@ -489,6 +491,9 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
 
   /// The background color of a selected dropdown entry.
   final Color onSelectedColor;
+
+  /// The background color of a hovered dropdown entry.
+  final Color onHoverColor;
 
   /// The text style of dropdown menu entries.
   final TextStyle? entryTextStyle;
@@ -513,6 +518,7 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
     Color? backgroundColor,
     TextStyle? labelTextStyle,
     Color? onSelectedColor,
+    Color? onHoverColor,
     TextStyle? entryTextStyle,
     TextStyle? inputTextStyle,
     Color? onFocusLabelColor,
@@ -522,6 +528,7 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
     return SteamDropdownTheme(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       onSelectedColor: onSelectedColor ?? this.onSelectedColor,
+      onHoverColor: onHoverColor ?? this.onHoverColor,
       entryTextStyle: entryTextStyle ?? this.entryTextStyle,
       labelTextStyle: labelTextStyle ?? this.labelTextStyle,
       inputTextStyle: inputTextStyle ?? this.inputTextStyle,
@@ -540,6 +547,7 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
     return SteamDropdownTheme(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       onSelectedColor: Color.lerp(onSelectedColor, other.onSelectedColor, t)!,
+      onHoverColor: Color.lerp(onHoverColor, other.onHoverColor, t)!,
       entryTextStyle: TextStyle.lerp(entryTextStyle, other.entryTextStyle, t),
       labelTextStyle: TextStyle.lerp(
         labelTextStyle,
@@ -633,6 +641,7 @@ ThemeData flutterSteamTheme({
     ),
     onFocusLabelColor: steamTheme.highlight,
     onSelectedColor: steamTheme.highlightMuted,
+    onHoverColor: steamTheme.secondary,
   );
 
   return ThemeData(

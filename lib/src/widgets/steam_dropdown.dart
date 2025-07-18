@@ -158,7 +158,7 @@ class _SteamDropdownMenuState<T> extends State<SteamDropdownMenu<T>> {
 }
 
 /// A dropdown menu dialog containing selectable entries.
-class _DialogContent<T> extends StatelessWidget {
+class _DialogContent<T> extends StatefulWidget {
   const _DialogContent({
     required this.width,
     required this.selectedValue,
@@ -183,33 +183,51 @@ class _DialogContent<T> extends StatelessWidget {
   }) onEntrySelected;
 
   @override
+  State<_DialogContent<T>> createState() => _DialogContentState<T>();
+}
+
+class _DialogContentState<T> extends State<_DialogContent<T>> {
+  int? _hoveredIndex;
+
+  @override
   Widget build(BuildContext context) {
-    final dropdownTheme = Theme.of(context).extension<SteamDropdownTheme>();
+    final dropdownTheme = Theme.of(context).extension<SteamDropdownTheme>()!;
     return SteamContainer(
       padding: EdgeInsets.zero,
-      width: width,
+      width: widget.width,
       height: 200,
       child: SteamSingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: entries.map((entry) {
-            final isSelected = entry.value == selectedValue;
-            return Container(
-              color: isSelected ? dropdownTheme!.onSelectedColor : null,
-              padding: dropdownTheme!.dialogPadding,
-              child: SteamPressable(
-                onPressed: () => onEntrySelected(
-                  entry: entry,
-                  isSelected: isSelected,
-                ),
-                child: Text(
-                  entry.label,
-                  style: dropdownTheme.entryTextStyle,
+          children: List.generate(widget.entries.length, (index) {
+            final entry = widget.entries[index];
+            final isSelected = entry.value == widget.selectedValue;
+            final isHovered = _hoveredIndex == index;
+
+            return MouseRegion(
+              onEnter: (_) => setState(() => _hoveredIndex = index),
+              onExit: (_) => setState(() => _hoveredIndex = null),
+              child: Container(
+                color: isSelected
+                    ? dropdownTheme.onSelectedColor
+                    : isHovered
+                        ? dropdownTheme.onHoverColor
+                        : null,
+                padding: dropdownTheme.dialogPadding,
+                child: SteamPressable(
+                  onPressed: () => widget.onEntrySelected(
+                    entry: entry,
+                    isSelected: isSelected,
+                  ),
+                  child: Text(
+                    entry.label,
+                    style: dropdownTheme.entryTextStyle,
+                  ),
                 ),
               ),
             );
-          }).toList(),
+          }),
         ),
       ),
     );
