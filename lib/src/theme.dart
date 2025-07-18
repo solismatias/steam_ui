@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:steam_ui/steam_ui.dart';
 
-/// {@template steam_theme}
 /// Class with general theme information for Flutter Steam.
-/// {@endtemplate}
 class SteamTheme extends ThemeExtension<SteamTheme> {
-  /// {@macro steam_theme}
+  /// Class with general theme information for Flutter Steam.
   const SteamTheme({
     required this.primary,
     required this.secondary,
@@ -106,7 +104,6 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
   }
 }
 
-/// {@template steam_container_theme}
 /// A customizable theme for containers in the Steam UI package.
 ///
 /// A [SteamContainerTheme] provides styling for the [SteamContainer] widget,
@@ -126,10 +123,26 @@ class SteamTheme extends ThemeExtension<SteamTheme> {
 /// method to override any of these properties,
 /// or by applying a new instance of `SteamContainerTheme`
 /// through the `ThemeData.extension`.
-///
-/// {@endtemplate}
 class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
-  /// {@macro steam_container_theme}
+  /// A customizable theme for containers in the Steam UI package.
+  ///
+  /// A [SteamContainerTheme] provides styling for the [SteamContainer] widget,
+  /// including background color, border colors, label text style, and padding.
+  ///
+  /// By default, the [SteamContainerTheme] allows the following properties:
+  ///
+  ///  - [backgroundColor] defines the background color of the container.
+  ///  - [primaryBorderColor] defines the primary border color used on the top/left sides of the container.
+  ///  - [secondaryBorderColor] defines the secondary border color used on the bottom/right sides of the container.
+  ///  - [labelTextStyle] defines an optional text style for labels
+  /// within the container.
+  ///  - [padding] defines the inner padding for the container,
+  /// with a default value of 10.
+  ///
+  /// You can customize the theme by using the `copyWith`
+  /// method to override any of these properties,
+  /// or by applying a new instance of `SteamContainerTheme`
+  /// through the `ThemeData.extension`.
   const SteamContainerTheme({
     required this.backgroundColor,
     required this.primaryBorderColor,
@@ -196,7 +209,6 @@ class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
   }
 }
 
-/// {@template steam_button_theme}
 /// A customizable theme for buttons in the Steam UI package.
 ///
 /// A [SteamButtonTheme] provides styling for the [SteamButton] widget,
@@ -214,10 +226,24 @@ class SteamContainerTheme extends ThemeExtension<SteamContainerTheme> {
 /// method to override any of these properties,
 /// or by applying a new instance of `SteamButtonTheme`
 /// through the `ThemeData.extension`.
-///
-/// {@endtemplate}
 class SteamButtonTheme extends ThemeExtension<SteamButtonTheme> {
-  /// {@macro steam_button_theme}
+  /// A customizable theme for buttons in the Steam UI package.
+  ///
+  /// A [SteamButtonTheme] provides styling for the [SteamButton] widget,
+  /// including background color, border colors, label text style, and padding.
+  ///
+  /// By default, the [SteamButtonTheme] allows the following properties:
+  ///
+  ///  - [backgroundColor] defines the background color of the button.
+  ///  - [labelTextStyle] defines an optional text style for labels
+  /// within the button.
+  ///  - [padding] defines the inner padding for the button,
+  /// with a default value of horizontal 8 and vertical 4.
+  ///
+  /// You can customize the theme by using the `copyWith`
+  /// method to override any of these properties,
+  /// or by applying a new instance of `SteamButtonTheme`
+  /// through the `ThemeData.extension`.
   const SteamButtonTheme({
     required this.backgroundColor,
     this.labelTextStyle,
@@ -262,7 +288,6 @@ class SteamButtonTheme extends ThemeExtension<SteamButtonTheme> {
   }
 }
 
-/// {@template steam_icon_button_theme}
 /// A customizable theme for icon buttons in the Steam UI package.
 ///
 /// A [SteamIconButtonTheme] provides styling for the [SteamIconButton] widget,
@@ -279,10 +304,23 @@ class SteamButtonTheme extends ThemeExtension<SteamButtonTheme> {
 /// method to override any of these properties,
 /// or by applying a new instance of `SteamIconButtonTheme`
 /// through the `ThemeData.extension`.
-///
-/// {@endtemplate}
 class SteamIconButtonTheme extends ThemeExtension<SteamIconButtonTheme> {
-  /// {@macro steam_icon_button_theme}
+  /// A customizable theme for icon buttons in the Steam UI package.
+  ///
+  /// A [SteamIconButtonTheme] provides styling for the [SteamIconButton] widget
+  /// including background color, icon color, icon size, and padding.
+  ///
+  /// By default, the [SteamIconButtonTheme] allows the following properties:
+  ///
+  ///  - [backgroundColor] defines the background color of the button.
+  ///  - [iconColor] defines the color of the icon.
+  ///  - [iconSize] defines the size of the icon, with a default value of 23.5.
+  ///  - [padding] defines the inner padding for the button, defaulting to 2.
+  ///
+  /// You can customize the theme by using the `copyWith`
+  /// method to override any of these properties,
+  /// or by applying a new instance of `SteamIconButtonTheme`
+  /// through the `ThemeData.extension`.
   const SteamIconButtonTheme({
     required this.backgroundColor,
     required this.iconColor,
@@ -337,7 +375,6 @@ class SteamIconButtonTheme extends ThemeExtension<SteamIconButtonTheme> {
   }
 }
 
-/// {@template steam_textfield_theme}
 /// A customizable theme for text fields in the Steam UI package.
 ///
 /// A [SteamTextFieldTheme] provides styling for the [SteamTextField] widget,
@@ -355,9 +392,24 @@ class SteamIconButtonTheme extends ThemeExtension<SteamIconButtonTheme> {
 /// Customize theme using `copyWith` method to override any property,
 /// or by applying a new instance of `SteamTextFieldTheme`
 /// through the `ThemeData.extension`.
-/// {@endtemplate}
 class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
-  /// {@macro steam_textfield_theme}
+  /// A customizable theme for text fields in the Steam UI package.
+  ///
+  /// A [SteamTextFieldTheme] provides styling for the [SteamTextField] widget,
+  /// including background color, label text style, input text style,
+  /// on-focus label color and padding.
+  ///
+  /// By default, the [SteamTextFieldTheme] allows the following properties:
+  ///
+  ///  - [backgroundColor] defines the background color of the text field.
+  ///  - [labelTextStyle] defines the text style for the label.
+  ///  - [inputTextStyle] defines the text style for the input value.
+  ///  - [onFocusLabelColor] label color when the text field is focused.
+  ///  - [padding] padding inside the text field, with a default value.
+  ///
+  /// Customize theme using `copyWith` method to override any property,
+  /// or by applying a new instance of `SteamTextFieldTheme`
+  /// through the `ThemeData.extension`.
   const SteamTextFieldTheme({
     required this.backgroundColor,
     required this.labelTextStyle,
@@ -455,7 +507,6 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
   }
 }
 
-/// {@template steam_dropdown_theme}
 /// A customizable theme for dropdown menus in the Steam UI package.
 ///
 /// Defines the appearance of a dropdown menu, including:
@@ -471,9 +522,22 @@ class SteamTextFieldTheme extends ThemeExtension<SteamTextFieldTheme> {
 ///
 /// Use `copyWith` to modify specific properties or provide a new instance
 /// to `ThemeData.extension`.
-/// {@endtemplate}
 class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
-  /// {@macro steam_dropdown_theme}
+  /// A customizable theme for dropdown menus in the Steam UI package.
+  ///
+  /// Defines the appearance of a dropdown menu, including:
+  /// - [backgroundColor]: Background color of the dropdown menu.
+  /// - [onSelectedColor]: Background color of a selected entry.
+  /// - [onHoverColor]: Background color of a hovered entry.
+  /// - [entryTextStyle]: Text style for dropdown options.
+  /// - [labelTextStyle] defines the text style for the label.
+  /// - [inputTextStyle]: Text style for the input box.
+  /// - [onFocusLabelColor] label color when the text field is focused.
+  /// - [inputPadding]: Padding inside the input box.
+  /// - [dialogPadding]: Padding inside the dropdown menu.
+  ///
+  /// Use `copyWith` to modify specific properties or provide a new instance
+  /// to `ThemeData.extension`.
   const SteamDropdownTheme({
     required this.backgroundColor,
     required this.onSelectedColor,
