@@ -86,8 +86,9 @@ class _SteamTextFieldState extends State<SteamTextField> {
           ),
         if (widget.label != null) const SizedBox(height: 5),
         SteamContainer(
-          backgroundColor:
-              widget.enabled ? cTheme.backgroundColor : cTheme.disabledBackgroundColor,
+          backgroundColor: widget.enabled
+              ? cTheme.backgroundColor
+              : cTheme.disabledBackgroundColor,
           alternateBorderColor: true,
           padding: const EdgeInsets.only(left: 3, bottom: 3),
           child: TextField(
@@ -96,7 +97,9 @@ class _SteamTextFieldState extends State<SteamTextField> {
             onChanged: widget.onChanged,
             keyboardType: widget.keyboardType,
             obscureText: widget.obscureText,
-            style: widget.enabled ? cTheme.inputTextStyle : cTheme.disabledTextStyle,
+            style: widget.enabled
+                ? cTheme.inputTextStyle
+                : cTheme.disabledTextStyle,
             decoration: const InputDecoration(
               border: InputBorder.none,
               isCollapsed: true,

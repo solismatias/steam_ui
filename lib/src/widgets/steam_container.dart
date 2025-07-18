@@ -4,8 +4,8 @@ import 'package:steam_ui/src/theme.dart';
 /// A generic container with customizable background, padding, and border color
 /// that uses the `SteamContainerTheme` for its styling.
 class SteamContainer extends StatelessWidget {
-  /// A generic container with customizable background, padding, and border color
-  /// that uses the `SteamContainerTheme` for its styling.
+  /// A generic container with customizable background, padding, and
+  /// border color that uses the `SteamContainerTheme` for its styling.
   const SteamContainer({
     super.key,
     this.label,
