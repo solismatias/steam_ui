@@ -253,27 +253,30 @@ class _InputBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dropdownTheme = Theme.of(context).extension<SteamDropdownTheme>();
-    return GestureDetector(
-      onTap: onTap,
-      child: SteamContainer(
-        backgroundColor: dropdownTheme!.backgroundColor,
-        alternateBorderColor: true,
-        padding: dropdownTheme.inputPadding,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Expanded(
-              child: selectedEntry != null
-                  ? Text(
-                      selectedEntry?.label ?? '',
-                      style: dropdownTheme.inputTextStyle,
-                    )
-                  : const SizedBox(),
-            ),
-            const SizedBox(width: 8),
-            const Icon(Icons.arrow_drop_down_rounded),
-            const SizedBox(width: 8),
-          ],
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onTap,
+        child: SteamContainer(
+          backgroundColor: dropdownTheme!.backgroundColor,
+          alternateBorderColor: true,
+          padding: dropdownTheme.inputPadding,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                child: selectedEntry != null
+                    ? Text(
+                        selectedEntry?.label ?? '',
+                        style: dropdownTheme.inputTextStyle,
+                      )
+                    : const SizedBox(),
+              ),
+              const SizedBox(width: 8),
+              const Icon(Icons.arrow_drop_down_rounded),
+              const SizedBox(width: 8),
+            ],
+          ),
         ),
       ),
     );

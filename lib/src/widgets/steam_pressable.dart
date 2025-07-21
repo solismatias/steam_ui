@@ -99,15 +99,19 @@ class _SteamPressableState extends State<SteamPressable> {
         ? const Offset(1, 1)
         : Offset.zero;
 
-    return Transform.translate(
-      offset: offset,
-      child: GestureDetector(
-        behavior: widget.behavior,
-        onTap: () => _handlePress(widget.onPressed),
-        onTapDown: (_) => _handlePress(widget.onPressStart, isPressed: true),
-        onTapUp: (_) => _handlePress(widget.onPressEnd),
-        onTapCancel: () => _handlePress(widget.onPressEnd),
-        child: widget.child,
+    return MouseRegion(
+      cursor:
+          hasListeners ? SystemMouseCursors.click : SystemMouseCursors.basic,
+      child: Transform.translate(
+        offset: offset,
+        child: GestureDetector(
+          behavior: widget.behavior,
+          onTap: () => _handlePress(widget.onPressed),
+          onTapDown: (_) => _handlePress(widget.onPressStart, isPressed: true),
+          onTapUp: (_) => _handlePress(widget.onPressEnd),
+          onTapCancel: () => _handlePress(widget.onPressEnd),
+          child: widget.child,
+        ),
       ),
     );
   }
