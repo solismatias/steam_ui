@@ -253,6 +253,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
   late final TextEditingController _sectorController;
   late Timer _audioTimer;
   double _audioLevel = 0;
+  double _satisfactionLevel = 50;
 
   static const List<String> _positions = [
     'Software Engineer',
@@ -382,6 +383,29 @@ class _EmployeeFormState extends State<EmployeeForm> {
               SteamAudioMeter(value: _audioLevel),
             ],
           ),
+        ),
+        const SizedBox(height: 16),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Satisfaction level'),
+                Text('${_satisfactionLevel.round()}%'),
+              ],
+            ),
+            const SizedBox(height: 8),
+            SteamSlider(
+              max: 100,
+              value: _satisfactionLevel,
+              onChanged: (value) {
+                setState(() {
+                  _satisfactionLevel = value;
+                });
+              },
+            ),
+          ],
         ),
       ],
     );

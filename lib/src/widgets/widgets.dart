@@ -7,4 +7,5 @@ export 'steam_loader.dart';
 export 'steam_pressable.dart';
 export 'steam_scrollbar.dart';
 export 'steam_single_child_scroll_view.dart';
+export 'steam_slider.dart';
 export 'steam_text_field.dart';
