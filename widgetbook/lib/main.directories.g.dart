@@ -19,12 +19,12 @@ import 'package:widgetbook_workspace/steam_dropdown.dart'
     as _widgetbook_workspace_steam_dropdown;
 import 'package:widgetbook_workspace/steam_icon_button.dart'
     as _widgetbook_workspace_steam_icon_button;
-import 'package:widgetbook_workspace/steam_loader.dart'
-    as _widgetbook_workspace_steam_loader;
 import 'package:widgetbook_workspace/steam_meter.dart'
     as _widgetbook_workspace_steam_meter;
 import 'package:widgetbook_workspace/steam_pressable.dart'
     as _widgetbook_workspace_steam_pressable;
+import 'package:widgetbook_workspace/steam_progress_bar.dart'
+    as _widgetbook_workspace_steam_progress_bar;
 import 'package:widgetbook_workspace/steam_single_child_scroll_view.dart'
     as _widgetbook_workspace_steam_single_child_scroll_view;
 import 'package:widgetbook_workspace/steam_slider.dart'
@@ -76,15 +76,6 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'SteamLoader',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _widgetbook_workspace_steam_loader.buildSteamLoaderUseCase,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
         name: 'SteamMeter',
         useCases: [
           _widgetbook.WidgetbookUseCase(
@@ -100,6 +91,16 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Default',
             builder: _widgetbook_workspace_steam_pressable
                 .buildSteamPressableUseCase,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'SteamProgressBar',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Default',
+            builder: _widgetbook_workspace_steam_progress_bar
+                .buildSteamProgressBarUseCase,
           ),
         ],
       ),

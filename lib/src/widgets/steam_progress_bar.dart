@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
 
-/// A visual loader widget that represents a value from 0 to 100 using
+/// A visual progress bar widget that represents a value from 0 to 100 using
 /// a horizontal bar with highlighted blocks.
-class SteamLoader extends StatelessWidget {
-  /// Creates an instance of [SteamLoader] with the given [value].
+class SteamProgressBar extends StatelessWidget {
+  /// Creates an instance of [SteamProgressBar] with the given [value].
   ///
-  /// The [value] determines the number of active blocks in the loader.
-  const SteamLoader({
+  /// The [value] determines the number of active blocks in the progress bar.
+  const SteamProgressBar({
     required this.value,
     super.key,
   });

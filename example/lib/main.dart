@@ -123,7 +123,7 @@ class _LoadingSectionState extends State<LoadingSection> {
                       padding: const EdgeInsets.all(6),
                       backgroundColor: steamTheme?.tertiary,
                       alternateBorderColor: true,
-                      child: SteamLoader(value: _progress),
+                      child: SteamProgressBar(value: _progress),
                     ),
                   ),
                   const SizedBox(width: 8),
