@@ -119,6 +119,7 @@ class _SteamDropdownMenuState<T> extends State<SteamDropdownMenu<T>> {
     return Column(
       key: _inputBoxKey,
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         // Display label if provided
         if (widget.label != null)

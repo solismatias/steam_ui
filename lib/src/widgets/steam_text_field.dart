@@ -75,6 +75,7 @@ class _SteamTextFieldState extends State<SteamTextField> {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         // Display label if provided
         if (widget.label != null)
