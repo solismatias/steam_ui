@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-/// A visual audio meter that represents a value from 0 to 100 using
+/// A visual meter that represents a value from 0 to 100 using
 /// a horizontal bar with a color gradient from green to red.
 ///
 /// The color transitions from green (low values) to yellow (mid-range)
 /// and red (high values), with inactive segments appearing darker.
-class SteamAudioMeter extends StatelessWidget {
-  /// Creates an instance of [SteamAudioMeter] with the given [value].
+class SteamMeter extends StatelessWidget {
+  /// Creates an instance of [SteamMeter] with the given [value].
   ///
   /// The [value] determines the number of active segments in the meter.
 
-  const SteamAudioMeter({
+  const SteamMeter({
     required this.value,
     super.key,
   });

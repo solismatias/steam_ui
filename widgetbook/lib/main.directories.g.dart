@@ -11,8 +11,6 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _widgetbook;
-import 'package:widgetbook_workspace/steam_audio_meter.dart'
-    as _widgetbook_workspace_steam_audio_meter;
 import 'package:widgetbook_workspace/steam_button.dart'
     as _widgetbook_workspace_steam_button;
 import 'package:widgetbook_workspace/steam_container.dart'
@@ -23,6 +21,8 @@ import 'package:widgetbook_workspace/steam_icon_button.dart'
     as _widgetbook_workspace_steam_icon_button;
 import 'package:widgetbook_workspace/steam_loader.dart'
     as _widgetbook_workspace_steam_loader;
+import 'package:widgetbook_workspace/steam_meter.dart'
+    as _widgetbook_workspace_steam_meter;
 import 'package:widgetbook_workspace/steam_pressable.dart'
     as _widgetbook_workspace_steam_pressable;
 import 'package:widgetbook_workspace/steam_single_child_scroll_view.dart'
@@ -36,16 +36,6 @@ final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
     name: 'widgets',
     children: [
-      _widgetbook.WidgetbookComponent(
-        name: 'SteamAudioMeter',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Default',
-            builder: _widgetbook_workspace_steam_audio_meter
-                .buildSteamAudioMeterUseCase,
-          ),
-        ],
-      ),
       _widgetbook.WidgetbookComponent(
         name: 'SteamButton',
         useCases: [
@@ -91,6 +81,15 @@ final directories = <_widgetbook.WidgetbookNode>[
           _widgetbook.WidgetbookUseCase(
             name: 'Default',
             builder: _widgetbook_workspace_steam_loader.buildSteamLoaderUseCase,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'SteamMeter',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Default',
+            builder: _widgetbook_workspace_steam_meter.buildSteamMeterUseCase,
           ),
         ],
       ),

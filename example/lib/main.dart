@@ -251,8 +251,8 @@ class _EmployeeFormState extends State<EmployeeForm> {
   late final TextEditingController _nameController;
   late final TextEditingController _lastNameController;
   late final TextEditingController _sectorController;
-  late Timer _audioTimer;
-  double _audioLevel = 0;
+  late Timer _meterTimer;
+  double _meterLevel = 0;
   double _satisfactionLevel = 50;
 
   static const List<String> _positions = [
@@ -316,16 +316,16 @@ class _EmployeeFormState extends State<EmployeeForm> {
     _nameController = TextEditingController(text: 'Gordon');
     _lastNameController = TextEditingController(text: 'Freeman');
     _sectorController = TextEditingController(text: 'Anomalous Materials');
-    _startAudioMeterSimulation();
+    _startMeterSimulation();
   }
 
-  void _startAudioMeterSimulation() {
-    _audioTimer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
+  void _startMeterSimulation() {
+    _meterTimer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
       setState(() {
         final random = Random();
         final baseLevel = 15 + random.nextDouble() * 10;
         final spike = random.nextDouble() < 0.1 ? random.nextDouble() * 30 : 0;
-        _audioLevel = (baseLevel + spike).clamp(0, 100);
+        _meterLevel = (baseLevel + spike).clamp(0, 100);
       });
     });
   }
@@ -335,7 +335,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
     _nameController.dispose();
     _lastNameController.dispose();
     _sectorController.dispose();
-    _audioTimer.cancel();
+    _meterTimer.cancel();
     super.dispose();
   }
 
@@ -376,11 +376,11 @@ class _EmployeeFormState extends State<EmployeeForm> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('Microphone Input (fake)'),
-                  Text('${_audioLevel.round()}%'),
+                  Text('${_meterLevel.round()}%'),
                 ],
               ),
               const SizedBox(height: 8),
-              SteamAudioMeter(value: _audioLevel),
+              SteamMeter(value: _meterLevel),
             ],
           ),
         ),
