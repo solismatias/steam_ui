@@ -253,7 +253,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
   late final TextEditingController _sectorController;
   late Timer _meterTimer;
   double _meterLevel = 0;
-  double _satisfactionLevel = 50;
+  double _sliderValue = 105;
 
   static const List<String> _positions = [
     'Software Engineer',
@@ -391,17 +391,17 @@ class _EmployeeFormState extends State<EmployeeForm> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Satisfaction level'),
-                Text('${_satisfactionLevel.round()}%'),
+                const Text('Overhead capacitors'),
+                Text('${_sliderValue.round()}%'),
               ],
             ),
             const SizedBox(height: 8),
             SteamSlider(
-              max: 100,
-              value: _satisfactionLevel,
+              max: 105,
+              value: _sliderValue,
               onChanged: (value) {
                 setState(() {
-                  _satisfactionLevel = value;
+                  _sliderValue = value;
                 });
               },
             ),
