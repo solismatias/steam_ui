@@ -35,15 +35,18 @@ class _HomePageState extends State<HomePage> {
       body: SteamSingleChildScrollView(
         child: SizedBox(
           width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 50),
-              const LoadingSection(),
-              const SizedBox(height: 50),
-              const EmployeeFormSection(),
-              const SizedBox(height: 50),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 50),
+                const LoadingSection(),
+                const SizedBox(height: 50),
+                const EmployeeFormSection(),
+                const SizedBox(height: 50),
+              ],
+            ),
           ),
         ),
       ),
@@ -101,48 +104,45 @@ class _LoadingSectionState extends State<LoadingSection> {
   Widget build(BuildContext context) {
     final steamTheme = Theme.of(context).extension<SteamTheme>();
 
-    return SizedBox(
-      width: 600,
-      child: SteamContainer(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              _isLoading ? 'Loading...' : 'Complete!',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              height: 40,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    child: SteamContainer(
-                      padding: const EdgeInsets.all(6),
-                      backgroundColor: steamTheme?.tertiary,
-                      alternateBorderColor: true,
-                      child: SteamProgressBar(value: _progress),
-                    ),
+    return SteamContainer(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            _isLoading ? 'Loading...' : 'Complete!',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 16),
+          SizedBox(
+            height: 40,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: SteamContainer(
+                    padding: const EdgeInsets.all(6),
+                    backgroundColor: steamTheme?.tertiary,
+                    alternateBorderColor: true,
+                    child: SteamProgressBar(value: _progress),
                   ),
-                  const SizedBox(width: 8),
-                  SteamButton(
-                    onPressed: () {
-                      setState(() {
-                        _progress = 0;
-                        _isLoading = true;
-                      });
-                      _timer.cancel();
-                      _startLoading();
-                    },
-                    child: const Text('Restart'),
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(width: 8),
+                SteamButton(
+                  onPressed: () {
+                    setState(() {
+                      _progress = 0;
+                      _isLoading = true;
+                    });
+                    _timer.cancel();
+                    _startLoading();
+                  },
+                  child: const Text('Restart'),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -154,8 +154,6 @@ class EmployeeFormSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SteamContainer(
-      width: 800,
-
       padding: const EdgeInsets.all(16),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -197,13 +195,27 @@ class EmployeeFormContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SteamContainer(
       padding: const EdgeInsets.all(16),
-      child: const Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(flex: 3, child: EmployeeAvatar()),
-          SizedBox(width: 32),
-          Expanded(flex: 7, child: EmployeeForm()),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth < 700) {
+            return const Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                EmployeeAvatar(),
+                SizedBox(height: 32),
+                EmployeeForm(),
+              ],
+            );
+          }
+          return const Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(flex: 3, child: EmployeeAvatar()),
+              SizedBox(width: 32),
+              Expanded(flex: 7, child: EmployeeForm()),
+            ],
+          );
+        },
       ),
     );
   }
