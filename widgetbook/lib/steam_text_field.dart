@@ -7,7 +7,7 @@ Widget buildSteamTextFieldUseCase(BuildContext context) {
   return Center(
     child: SizedBox(
       width: 300,
-      child: const SteamTextField(label: Text('Username')),
+      child: const SteamTextField(label: Text('Subject')),
     ),
   );
 }

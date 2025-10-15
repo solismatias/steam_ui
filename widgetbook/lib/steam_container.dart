@@ -9,7 +9,7 @@ Widget buildSteamContainerUseCase(BuildContext context) {
       child: SizedBox(
         width: 100,
         height: 100,
-        child: Center(child: Text('A highly trained container')),
+        child: Center(child: Text('This is just a container')),
       ),
     ),
   );

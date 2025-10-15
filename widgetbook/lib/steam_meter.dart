@@ -8,13 +8,21 @@ Widget buildSteamMeterUseCase(BuildContext context) {
   return Center(
     child: SizedBox(
       width: 300,
-      child: SteamMeter(
-        value: context.knobs.double.slider(
-          label: 'Value',
-          min: 0,
-          max: 100,
-          initialValue: 50,
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Resonance Cascade'),
+          const SizedBox(height: 8),
+          SteamMeter(
+            value: context.knobs.double.slider(
+              label: 'Value',
+              min: 0,
+              max: 100,
+              initialValue: 50,
+            ),
+          ),
+        ],
       ),
     ),
   );

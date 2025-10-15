@@ -5,6 +5,9 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 @widgetbook.UseCase(name: 'Default', type: SteamButton)
 Widget buildSteamButtonUseCase(BuildContext context) {
   return Center(
-    child: SteamButton(onPressed: () {}, child: Text('Press Me!')),
+    child: SteamButton(
+      onPressed: () {},
+      child: Text('Initiate Resonance Scan'),
+    ),
   );
 }

@@ -8,19 +8,19 @@ Widget buildSteamDropdownMenuUseCase(BuildContext context) {
     child: SizedBox(
       width: 300,
       child: const SteamDropdownMenu(
-        label: Text('Sector'),
+        label: Text('Position'),
         entries: [
           SteamDropdownMenuEntry(
             value: 'anomalous_material',
-            label: 'Anomalous Material',
+            label: 'Anomalous Materials',
           ),
           SteamDropdownMenuEntry(
-            value: 'high_energy_laser',
-            label: 'High Energy Laser',
+            value: 'advanced_biological_research',
+            label: 'Advanced Biological Research',
           ),
           SteamDropdownMenuEntry(
-            value: 'hazardous_environment',
-            label: 'Hazardous Environment',
+            value: 'lambda_complex',
+            label: 'Lambda Complex',
           ),
         ],
       ),
