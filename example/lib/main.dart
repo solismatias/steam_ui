@@ -33,19 +33,24 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SteamSingleChildScrollView(
-        child: SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 50),
-                const LoadingSection(),
-                const SizedBox(height: 50),
-                const EmployeeFormSection(),
-                const SizedBox(height: 50),
-              ],
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1000),
+            child: SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 50),
+                    const LoadingSection(),
+                    const SizedBox(height: 50),
+                    const EmployeeFormSection(),
+                    const SizedBox(height: 50),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
