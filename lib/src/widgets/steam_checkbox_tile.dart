@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:steam_ui/src/theme.dart';
-import 'package:steam_ui/src/widgets/steam_checkbox.dart';
 import 'package:steam_ui/steam_ui.dart';
 
 /// A [ListTile] with a [SteamCheckbox].
@@ -28,6 +26,7 @@ class SteamCheckboxTile extends StatelessWidget {
     return SteamPressable(
       onPressed: () => onChanged(!value),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           SteamCheckbox(
             value: value,
