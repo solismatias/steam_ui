@@ -13,6 +13,10 @@
 import 'package:widgetbook/widgetbook.dart' as _widgetbook;
 import 'package:widgetbook_workspace/steam_button.dart'
     as _widgetbook_workspace_steam_button;
+import 'package:widgetbook_workspace/steam_checkbox.dart'
+    as _widgetbook_workspace_steam_checkbox;
+import 'package:widgetbook_workspace/steam_checkbox_tile.dart'
+    as _widgetbook_workspace_steam_checkbox_tile;
 import 'package:widgetbook_workspace/steam_container.dart'
     as _widgetbook_workspace_steam_container;
 import 'package:widgetbook_workspace/steam_dropdown.dart'
@@ -42,6 +46,25 @@ final directories = <_widgetbook.WidgetbookNode>[
           _widgetbook.WidgetbookUseCase(
             name: 'Default',
             builder: _widgetbook_workspace_steam_button.buildSteamButtonUseCase,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'SteamCheckbox',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Default',
+            builder: _widgetbook_workspace_steam_checkbox.steamCheckbox,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'SteamCheckboxTile',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Default',
+            builder:
+                _widgetbook_workspace_steam_checkbox_tile.steamCheckboxTile,
           ),
         ],
       ),
