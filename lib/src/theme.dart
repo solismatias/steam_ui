@@ -632,6 +632,53 @@ class SteamDropdownTheme extends ThemeExtension<SteamDropdownTheme> {
   }
 }
 
+/// A customizable theme for checkboxes in the Steam UI package.
+///
+/// A [SteamCheckboxTheme] provides styling for the [SteamCheckbox] widget,
+/// including border color and check color.
+@immutable
+class SteamCheckboxTheme extends ThemeExtension<SteamCheckboxTheme> {
+  /// A customizable theme for checkboxes in the Steam UI package.
+  ///
+  /// A [SteamCheckboxTheme] provides styling for the [SteamCheckbox] widget,
+  /// including background color and check color.
+  const SteamCheckboxTheme({
+    required this.borderColor,
+    required this.checkColor,
+  });
+
+  /// The border color of the checkbox.
+  final Color borderColor;
+
+  /// The color of the checkmark.
+  final Color checkColor;
+
+  @override
+  SteamCheckboxTheme copyWith({
+    Color? borderColor,
+    Color? checkColor,
+  }) {
+    return SteamCheckboxTheme(
+      borderColor: borderColor ?? this.borderColor,
+      checkColor: checkColor ?? this.checkColor,
+    );
+  }
+
+  @override
+  SteamCheckboxTheme lerp(
+    ThemeExtension<SteamCheckboxTheme>? other,
+    double t,
+  ) {
+    if (other is! SteamCheckboxTheme) {
+      return this;
+    }
+    return SteamCheckboxTheme(
+      borderColor: Color.lerp(borderColor, other.borderColor, t)!,
+      checkColor: Color.lerp(checkColor, other.checkColor, t)!,
+    );
+  }
+}
+
 /// Helper methods on [BuildContext] for the Flutter Steam.
 extension SteamBuildContext on BuildContext {
   /// Returns the extension of type [T] from the context.
@@ -708,6 +755,11 @@ ThemeData flutterSteamTheme({
     onHoverColor: steamTheme.secondary,
   );
 
+  final checkboxTheme = SteamCheckboxTheme(
+    borderColor: steamTheme.onPrimaryMuted,
+    checkColor: steamTheme.onPrimary,
+  );
+
   return ThemeData(
     brightness: brightness,
     primaryColor: steamTheme.primary,
@@ -719,6 +771,7 @@ ThemeData flutterSteamTheme({
       buttonIconTheme,
       textFieldTheme,
       dropdownTheme,
+      checkboxTheme,
     ],
   );
 }
