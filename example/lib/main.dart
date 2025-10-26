@@ -48,12 +48,63 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(height: 50),
                     const EmployeeFormSection(),
                     const SizedBox(height: 50),
+                    const CheckboxSection(),
+                    const SizedBox(height: 50),
                   ],
                 ),
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CheckboxSection extends StatefulWidget {
+  const CheckboxSection({super.key});
+
+  @override
+  State<CheckboxSection> createState() => _CheckboxSectionState();
+}
+
+class _CheckboxSectionState extends State<CheckboxSection> {
+  bool _isChecked1 = false;
+  bool _isChecked2 = true;
+  bool _isChecked3 = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return SteamContainer(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('System Status', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 16),
+          SteamCheckboxTile(
+            value: _isChecked1,
+            onChanged: (value) => setState(() => _isChecked1 = value),
+            label: 'Activate containment field',
+          ),
+          const SizedBox(height: 8),
+          SteamCheckboxTile(
+            value: _isChecked2,
+            onChanged: (value) => setState(() => _isChecked2 = value),
+            label: 'Authorize resonance cascade',
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              const Text('Awaiting input:'),
+              const SizedBox(width: 8),
+              SteamCheckbox(
+                value: _isChecked3,
+                onChanged: (value) => setState(() => _isChecked3 = value),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
