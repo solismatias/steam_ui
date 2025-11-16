@@ -679,6 +679,53 @@ class SteamCheckboxTheme extends ThemeExtension<SteamCheckboxTheme> {
   }
 }
 
+/// A customizable theme for radio buttons in the Steam UI package.
+///
+/// A [SteamRadioTheme] provides styling for the [SteamRadio] widget,
+/// including border color and dot color.
+@immutable
+class SteamRadioTheme extends ThemeExtension<SteamRadioTheme> {
+  /// A customizable theme for radio buttons in the Steam UI package.
+  ///
+  /// A [SteamRadioTheme] provides styling for the [SteamRadio] widget,
+  /// including background color and dot color.
+  const SteamRadioTheme({
+    required this.borderColor,
+    required this.dotColor,
+  });
+
+  /// The border color of the radio button.
+  final Color borderColor;
+
+  /// The color of the dot.
+  final Color dotColor;
+
+  @override
+  SteamRadioTheme copyWith({
+    Color? borderColor,
+    Color? dotColor,
+  }) {
+    return SteamRadioTheme(
+      borderColor: borderColor ?? this.borderColor,
+      dotColor: dotColor ?? this.dotColor,
+    );
+  }
+
+  @override
+  SteamRadioTheme lerp(
+    ThemeExtension<SteamRadioTheme>? other,
+    double t,
+  ) {
+    if (other is! SteamRadioTheme) {
+      return this;
+    }
+    return SteamRadioTheme(
+      borderColor: Color.lerp(borderColor, other.borderColor, t)!,
+      dotColor: Color.lerp(dotColor, other.dotColor, t)!,
+    );
+  }
+}
+
 /// Helper methods on [BuildContext] for the Flutter Steam.
 extension SteamBuildContext on BuildContext {
   /// Returns the extension of type [T] from the context.
@@ -760,6 +807,11 @@ ThemeData flutterSteamTheme({
     checkColor: steamTheme.onPrimary,
   );
 
+  final radioTheme = SteamRadioTheme(
+    borderColor: steamTheme.onPrimaryMuted,
+    dotColor: steamTheme.onPrimary,
+  );
+
   return ThemeData(
     brightness: brightness,
     primaryColor: steamTheme.primary,
@@ -772,6 +824,7 @@ ThemeData flutterSteamTheme({
       textFieldTheme,
       dropdownTheme,
       checkboxTheme,
+      radioTheme,
     ],
   );
 }

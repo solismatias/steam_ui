@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(height: 50),
                     const EmployeeFormSection(),
                     const SizedBox(height: 50),
-                    const CheckboxSection(),
+                    const RadioCheckboxSection(),
                     const SizedBox(height: 50),
                   ],
                 ),
@@ -61,17 +61,20 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class CheckboxSection extends StatefulWidget {
-  const CheckboxSection({super.key});
+class RadioCheckboxSection extends StatefulWidget {
+  const RadioCheckboxSection({super.key});
 
   @override
-  State<CheckboxSection> createState() => _CheckboxSectionState();
+  State<RadioCheckboxSection> createState() => _RadioCheckboxSectionState();
 }
 
-class _CheckboxSectionState extends State<CheckboxSection> {
+enum LabSector { a, b, c, d }
+
+class _RadioCheckboxSectionState extends State<RadioCheckboxSection> {
   bool _isChecked1 = false;
   bool _isChecked2 = true;
   bool _isChecked3 = true;
+  LabSector? _sector = LabSector.a;
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +107,26 @@ class _CheckboxSectionState extends State<CheckboxSection> {
               ),
             ],
           ),
+          const SizedBox(height: 16),
+          Text(
+            'Divert energy to:',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 16),
+
+          for (var sector in LabSector.values) ...[
+            SteamRadioTile<LabSector>(
+              label: 'Sector ${sector.name.toUpperCase()}',
+              value: sector,
+              groupValue: _sector,
+              onChanged: (LabSector? value) {
+                setState(() {
+                  _sector = value;
+                });
+              },
+            ),
+            const SizedBox(height: 8),
+          ],
         ],
       ),
     );
