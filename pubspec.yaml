@@ -1,6 +1,7 @@
 name: steam_ui
 description: UI library inspired by the classic Steam interface from the early 2000s
 version: 0.1.0+1
+license: MIT
 
 
 environment:
