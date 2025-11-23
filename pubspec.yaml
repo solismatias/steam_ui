@@ -1,12 +1,14 @@
 name: steam_ui
 description: UI library inspired by the classic Steam interface from the early 2000s
-version: 0.1.0+1
+version: 0.1.0
 license: MIT
+homepage: https://saitam.dev
+repository: https://github.com/solismatias/steam_ui
 
 
 environment:
   sdk: "^3.3.0"
-  flutter: "^3.19.0"
+  flutter: ">=3.19.0"
 
 dependencies:
   flutter:
