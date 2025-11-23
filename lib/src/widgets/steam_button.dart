@@ -71,7 +71,9 @@ class _SteamButtonState extends State<SteamButton> {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            if (widget._isDisabled && widget.showUnderlayTextStyle)
+            if (widget._isDisabled &&
+                widget.showUnderlayTextStyle &&
+                widget.child is Text)
               _UnderlayText(
                 steamTheme: steamTheme,
                 child: widget.child as Text,
