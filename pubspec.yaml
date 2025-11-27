@@ -19,3 +19,21 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^1.0.3
   very_good_analysis: ">=5.1.0 <11.0.0"
+
+topics:
+  - ui
+  - theme
+  - retro
+  - steam
+  - valve
+  - widgets
+
+issue_tracker: https://github.com/solismatias/steam_ui/issues
+
+screenshots:
+  - description: "Steam UI Demo 1"
+    path: assets/steam_ui_1.png
+  - description: "Steam UI Demo 2"
+    path: assets/steam_ui_2.png
+  - description: "Steam UI Demo 3"
+    path: assets/steam_ui_3.png
