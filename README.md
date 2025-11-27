@@ -65,3 +65,4 @@ MaterialApp(
 
 
 
+[flutter_install_link]: https://docs.flutter.dev/get-started/install
