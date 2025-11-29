@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:steam_ui/src/widgets/widgets.dart';
 
-/// A custom scrollable widget that includes a Steam-themed scrollbar.
-///
-/// This widget wraps a [SingleChildScrollView] and attaches a scrollbar
-/// for enhanced user experience. It supports both vertical and horizontal
-/// scrolling and allows optional content clipping.
+/// A scrollable widget that includes a Steam-styled scrollbar.
 class SteamSingleChildScrollView extends StatefulWidget {
   /// Creates a [SteamSingleChildScrollView].
   ///
-  /// Requires a [child] widget and optionally accepts a [ScrollController],
-  /// a [scrollDirection] (defaults to vertical), and a [clipContent] flag.
+  /// The [child] is the widget that will be scrolled.
+  /// The [scrollDirection] determines the scrolling axis.
+  /// The [controller] manages the scroll behavior.
   const SteamSingleChildScrollView({
     required this.child,
     this.scrollDirection = Axis.vertical,

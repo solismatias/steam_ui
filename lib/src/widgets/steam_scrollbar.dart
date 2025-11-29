@@ -6,15 +6,12 @@ import 'package:steam_ui/src/theme.dart';
 import 'package:steam_ui/src/widgets/steam_container.dart';
 import 'package:steam_ui/src/widgets/steam_icon_button.dart';
 
-/// A custom scrollbar widget styled for the Steam UI theme.
-///
-/// This scrollbar provides smooth scrolling functionality and supports both
-/// vertical and horizontal scrolling directions.
+/// A scrollbar widget styled for the Steam UI.
 class SteamScrollbar extends StatefulWidget {
   /// Creates a [SteamScrollbar].
   ///
-  /// Requires a [ScrollController] to control the scroll behavior and an [Axis]
-  /// to determine the scroll direction.
+  /// The [controller] manages the scroll behavior.
+  /// The [direction] determines whether the scrollbar is vertical or horizontal
   const SteamScrollbar({
     required this.controller,
     required this.direction,
