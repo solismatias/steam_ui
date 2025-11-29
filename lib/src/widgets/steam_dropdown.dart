@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
 import 'package:steam_ui/src/widgets/widgets.dart';
 
-/// A selectable entry for [SteamDropdownMenu].
+/// A selectable entry for [SteamDropdown].
 ///
 /// Each entry consists of a [value] representing the selection
 /// and a [label] displayed in the UI.
@@ -24,13 +24,13 @@ class SteamDropdownMenuEntry<T> {
 }
 
 /// A dropdown menu widget that allows users to select from a list of options.
-class SteamDropdownMenu<T> extends StatefulWidget {
-  /// Creates a [SteamDropdownMenu].
+class SteamDropdown<T> extends StatefulWidget {
+  /// Creates a [SteamDropdown].
   ///
   /// The [entries] list defines the options available in the dropdown.
   /// The [initialValue] sets the pre-selected option.
   /// The [onChanged] callback is triggered when the user selects a new option.
-  const SteamDropdownMenu({
+  const SteamDropdown({
     required this.entries,
     this.initialValue,
     this.onChanged,
@@ -51,10 +51,10 @@ class SteamDropdownMenu<T> extends StatefulWidget {
   final Widget? label;
 
   @override
-  State<SteamDropdownMenu<T>> createState() => _SteamDropdownMenuState<T>();
+  State<SteamDropdown<T>> createState() => _SteamDropdownMenuState<T>();
 }
 
-class _SteamDropdownMenuState<T> extends State<SteamDropdownMenu<T>> {
+class _SteamDropdownMenuState<T> extends State<SteamDropdown<T>> {
   late final _controller = OverlayPortalController();
   late T? _selectedValue = widget.initialValue;
 

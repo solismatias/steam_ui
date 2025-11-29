@@ -416,7 +416,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
           enabled: false,
         ),
         const SizedBox(height: 16),
-        SteamDropdownMenu(
+        SteamDropdown(
           label: const Text('Position'),
           initialValue: 'Theoretical Physicist',
           entries: [

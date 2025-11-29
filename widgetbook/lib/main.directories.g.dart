@@ -83,7 +83,7 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
-        name: 'SteamDropdownMenu',
+        name: 'SteamDropdown',
         useCases: [
           _widgetbook.WidgetbookUseCase(
             name: 'Default',
