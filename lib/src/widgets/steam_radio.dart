@@ -8,7 +8,7 @@ class SteamRadio<T> extends StatefulWidget {
   ///
   /// The [value] is the value represented by this radio button.
   /// The [groupValue] is the currently selected value for the group.
-  /// The [onChanged] callback is called when the user selects this radio button.
+  /// The [onChanged] callback is called when the user selects this radio button
   const SteamRadio({
     required this.value,
     required this.groupValue,
