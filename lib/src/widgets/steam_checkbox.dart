@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
 import 'package:steam_ui/src/widgets/steam_pressable.dart';
 
-/// A checkbox widget with a Steam-like design.
+/// A checkbox widget that allows users to select a boolean value.
 class SteamCheckbox extends StatefulWidget {
   /// Creates a [SteamCheckbox].
+  ///
+  /// The [value] determines whether the checkbox is checked.
+  /// The [onChanged] callback is called when the user taps the checkbox.
   const SteamCheckbox({
     required this.value,
     required this.onChanged,

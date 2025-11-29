@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:steam_ui/steam_ui.dart';
 
-/// A [ListTile] with a [SteamCheckbox].
+/// A list tile that contains a [SteamCheckbox] and a label.
 class SteamCheckboxTile extends StatelessWidget {
   /// Creates a [SteamCheckboxTile].
+  ///
+  /// The [value] determines whether the checkbox is checked.
+  /// The [onChanged] callback is called when the user taps the tile.
+  /// The [label] is displayed next to the checkbox.
   const SteamCheckboxTile({
     required this.value,
     required this.onChanged,
