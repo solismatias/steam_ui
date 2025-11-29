@@ -1,46 +1,12 @@
 import 'package:flutter/material.dart';
 
-/// A pressable widget that provides a subtle visual feedback
-///
-/// This widget supports callbacks for different press states:
-/// - `onPressed`: Triggered when the widget is tapped.
-/// - `onPressStart`: Triggered when a tap begins.
-/// - `onPressEnd`: Triggered when a tap ends or is canceled.
-///
-/// The `enableOffsetEffect` flag allows disabling the movement effect.
-///
-/// Example:
-/// ```dart
-/// SteamPressable(
-///   onPressed: () => print('Pressed!'),
-///   child: Container(
-///     padding: EdgeInsets.all(8),
-///     color: Colors.blue,
-///     child: Text('Press Me'),
-///   ),
-/// )
-/// ```
+/// A widget that detects press gestures and provides visual feedback.
 class SteamPressable extends StatefulWidget {
-  /// A pressable widget that provides a subtle visual feedback
+  /// Creates a [SteamPressable].
   ///
-  /// This widget supports callbacks for different press states:
-  /// - `onPressed`: Triggered when the widget is tapped.
-  /// - `onPressStart`: Triggered when a tap begins.
-  /// - `onPressEnd`: Triggered when a tap ends or is canceled.
-  ///
-  /// The `enableOffsetEffect` flag allows disabling the movement effect.
-  ///
-  /// Example:
-  /// ```dart
-  /// SteamPressable(
-  ///   onPressed: () => print('Pressed!'),
-  ///   child: Container(
-  ///     padding: EdgeInsets.all(8),
-  ///     color: Colors.blue,
-  ///     child: Text('Press Me'),
-  ///   ),
-  /// )
-  /// ```
+  /// The [child] is the widget to be displayed.
+  /// [onPressed] is called when the widget is tapped.
+  /// [enableOffsetEffect] toggles the visual press effect.
   const SteamPressable({
     required this.child,
     this.onPressed,

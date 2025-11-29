@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
 import 'package:steam_ui/src/widgets/widgets.dart';
 
-/// A single selectable entry in a Steam-styled dropdown menu.
+/// A selectable entry for [SteamDropdownMenu].
 ///
 /// Each entry consists of a [value] representing the selection
 /// and a [label] displayed in the UI.
 class SteamDropdownMenuEntry<T> {
-  /// A single selectable entry in a Steam-styled dropdown menu.
+  /// Creates a [SteamDropdownMenuEntry].
   ///
-  /// Each entry consists of a [value] representing the selection
-  /// and a [label] displayed in the UI.
+  /// The [value] is the underlying data for the entry.
+  /// The [label] is the text displayed to the user.
   const SteamDropdownMenuEntry({
     required this.value,
     required this.label,
@@ -23,17 +23,13 @@ class SteamDropdownMenuEntry<T> {
   final String label;
 }
 
-/// A Steam-styled dropdown menu widget that allows users
-/// to select from a list of predefined options.
-///
-/// The menu is customizable, supports an [initialValue], and
-/// invokes [onChanged] when the selected value changes.
+/// A dropdown menu widget that allows users to select from a list of options.
 class SteamDropdownMenu<T> extends StatefulWidget {
-  /// A Steam-styled dropdown menu widget that allows users
-  /// to select from a list of predefined options.
+  /// Creates a [SteamDropdownMenu].
   ///
-  /// The menu is customizable, supports an [initialValue], and
-  /// invokes [onChanged] when the selected value changes.
+  /// The [entries] list defines the options available in the dropdown.
+  /// The [initialValue] sets the pre-selected option.
+  /// The [onChanged] callback is triggered when the user selects a new option.
   const SteamDropdownMenu({
     required this.entries,
     this.initialValue,

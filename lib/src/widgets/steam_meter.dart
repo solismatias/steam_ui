@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 
-/// A visual meter that represents a value from 0 to 100 using
-/// a horizontal bar with a color gradient from green to red.
-///
-/// The color transitions from green (low values) to yellow (mid-range)
-/// and red (high values), with inactive segments appearing darker.
+/// A meter widget that visualizes a value from 0 to 100.
 class SteamMeter extends StatelessWidget {
-  /// Creates an instance of [SteamMeter] with the given [value].
+  /// Creates a [SteamMeter].
   ///
-  /// The [value] determines the number of active segments in the meter.
-
+  /// The [value] must be between 0 and 100.
   const SteamMeter({
     required this.value,
     super.key,

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
 
-/// A generic container with customizable background, padding, and border color
-/// that uses the `SteamContainerTheme` for its styling.
+/// A container widget with Steam-styled borders and background.
 class SteamContainer extends StatelessWidget {
-  /// A generic container with customizable background, padding, and
-  /// border color that uses the `SteamContainerTheme` for its styling.
+  /// Creates a [SteamContainer].
+  ///
+  /// [child] is the widget below this widget in the tree.
+  /// [alternateBorderColor] swaps the borders to create an indented effect.
   const SteamContainer({
     super.key,
     this.label,

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
 
-/// A visual progress bar widget that represents a value from 0 to 100 using
-/// a horizontal bar with highlighted blocks.
+/// A progress bar widget that visualizes progress using blocks.
 class SteamProgressBar extends StatelessWidget {
-  /// Creates an instance of [SteamProgressBar] with the given [value].
+  /// Creates a [SteamProgressBar].
   ///
-  /// The [value] determines the number of active blocks in the progress bar.
+  /// The [value] must be between 0 and 100.
   const SteamProgressBar({
     required this.value,
     super.key,

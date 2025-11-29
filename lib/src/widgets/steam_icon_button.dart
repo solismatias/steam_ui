@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
 import 'package:steam_ui/src/widgets/widgets.dart';
 
-/// A pressable icon button with customizable size, color, and padding.
-///
-/// The button supports `onPressed`, `onPressStart`, and `onPressEnd`.
-/// It is disabled if `disabled` is `true` or all press callbacks are `null`.
-
+/// An icon button widget that responds to press gestures.
 class SteamIconButton extends StatefulWidget {
-  /// Creates a [SteamIconButton]
+  /// Creates a [SteamIconButton].
+  ///
+  /// The [icon] is the icon to display.
+  /// The [onPressed] callback is triggered when the button is tapped.
+  /// If [onPressed] is null, the button is disabled.
   const SteamIconButton({
     required this.icon,
     super.key,
