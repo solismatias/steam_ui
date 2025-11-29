@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
 import 'package:steam_ui/src/widgets/steam_container.dart';
 
-/// A customizable text field widget with label support and a focus state,
-/// using a container style based on the Steam UI theme.
+/// A text field widget with Steam-styled borders and label support.
 class SteamTextField extends StatefulWidget {
-  /// Creates a [SteamTextField] widget with optional configurations for label,
-  /// initial text, text input type, and more.
+  /// Creates a [SteamTextField].
   ///
-  /// [onChanged] triggers when the text changes.
+  /// The [label] is displayed above the text field.
+  /// The [controller] controls the text being edited.
+  /// The [onChanged] callback is triggered when the text changes.
   const SteamTextField({
     super.key,
     this.label,
