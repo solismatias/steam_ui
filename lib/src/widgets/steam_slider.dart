@@ -7,9 +7,13 @@ const _thumbHeight = 24.0;
 const _trackHeight = 8.0;
 const _tickMarkCount = 10;
 
-/// A slider component with a Steam-like design.
+/// A slider widget that allows selecting a value from a range.
 class SteamSlider extends StatefulWidget {
   /// Creates a [SteamSlider].
+  ///
+  /// The [value] is the currently selected value.
+  /// The [onChanged] callback is called when the user drags the slider.
+  /// [min] and [max] define the range of values.
   const SteamSlider({
     required this.value,
     required this.onChanged,
