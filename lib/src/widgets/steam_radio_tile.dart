@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:steam_ui/steam_ui.dart';
 
-/// A [ListTile] with a [SteamRadio].
+/// A list tile that contains a [SteamRadio] and a label.
 class SteamRadioTile<T> extends StatelessWidget {
   /// Creates a [SteamRadioTile].
+  ///
+  /// The [value] is the value represented by this radio button.
+  /// The [groupValue] is the currently selected value for the group.
+  /// The [onChanged] callback is called when the user selects this radio button.
+  /// The [label] is displayed next to the radio button.
   const SteamRadioTile({
     required this.value,
     required this.groupValue,

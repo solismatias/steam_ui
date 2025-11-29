@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:steam_ui/src/theme.dart';
 import 'package:steam_ui/src/widgets/steam_pressable.dart';
 
-/// A radio button widget with a Steam-like design.
+/// A radio button widget that allows selecting one option from a group.
 class SteamRadio<T> extends StatefulWidget {
   /// Creates a [SteamRadio].
+  ///
+  /// The [value] is the value represented by this radio button.
+  /// The [groupValue] is the currently selected value for the group.
+  /// The [onChanged] callback is called when the user selects this radio button.
   const SteamRadio({
     required this.value,
     required this.groupValue,
