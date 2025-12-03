@@ -9,36 +9,28 @@ UI library inspired by the classic Steam interface from the early 2000s (Work in
 - [Example App](https://saitam.dev/steam_ui/example)
 - [Widget Catalog](https://saitam.dev/steam_ui/catalog/)
 
-## Installation 💻
+## Installation
 
-❗ To use Steam UI, you must have the [Flutter SDK][flutter_install_link] installed on your machine.
+To use Steam UI, you must have the [Flutter SDK][flutter_install_link] installed on your machine.
 
-Since this package is not available on pub.dev, you can install it using one of the following methods:
+### Option A: Install via pub.dev (Recommended)
 
-1. **Clone the repository**
+Run this command:
 
-    ```sh
-    git clone https://github.com/solismatias/steam_ui.git
-    ```
+```bash
+flutter pub add steam_ui
+```
 
-    Then, add it to your `pubspec.yaml`:
+### Option B: Install via GitHub
 
-    ```yaml
-    dependencies:
-      steam_ui:
-        path: ../steam_ui
-    ```
+Add this to your `pubspec.yaml`:
 
-2. **Use the GitHub repository directly**
-
-    Add this to your `pubspec.yaml`:
-
-    ```yaml
-    dependencies:
-      steam_ui:
-        git:
-          url: https://github.com/solismatias/steam_ui.git
-    ```
+```yaml
+dependencies:
+  steam_ui:
+    git:
+      url: https://github.com/solismatias/steam_ui.git
+```
 
    ---
 
